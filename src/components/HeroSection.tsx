@@ -6,21 +6,31 @@ const HeroSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
+    <section className="relative flex min-h-screen flex-col items-center justify-between overflow-hidden pt-16 pb-8">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/10" />
       <div className="absolute left-1/2 top-1/3 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
 
-      <div className="container relative z-10 px-4 text-center">
-        <h1 className="mb-6 font-display text-4xl font-bold tracking-tight text-foreground md:text-6xl lg:text-7xl">
+      {/* Logo centrado y grande */}
+      <div className="relative z-10 flex flex-1 items-center justify-center w-full px-8">
+        <img
+          src="/logo-iaclowd.png"
+          alt="IAcloWd Logo"
+          className="max-h-[45vh] max-w-[80vw] object-contain drop-shadow-[0_0_40px_hsl(var(--primary)/0.3)]"
+        />
+      </div>
+
+      {/* Texto y CTA abajo */}
+      <div className="relative z-10 px-4 text-center">
+        <h1 className="mb-3 font-display text-2xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
           {t('hero.title')}
         </h1>
-        <p className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground md:text-xl">
+        <p className="mx-auto mb-6 max-w-2xl text-sm text-muted-foreground md:text-base">
           {t('hero.subtitle')}
         </p>
         <Button
           size="lg"
-          className="animate-glow-pulse bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base font-semibold"
+          className="animate-glow-pulse bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-5 text-sm font-semibold"
           onClick={() => document.getElementById('services-bar')?.scrollIntoView({ behavior: 'smooth' })}
         >
           {t('hero.cta')}
