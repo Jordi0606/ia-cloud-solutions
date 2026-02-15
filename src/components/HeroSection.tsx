@@ -6,17 +6,17 @@ const HeroSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-between overflow-hidden pt-16 pb-8">
+    <section className="relative flex min-h-screen flex-col items-center justify-between overflow-hidden pt-16 pb-8 bg-background">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/10" />
-      <div className="absolute left-1/2 top-1/3 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/10" />
+      <div className="pointer-events-none absolute left-1/2 top-1/3 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
 
-      {/* Logo centrado y grande */}
-      <div className="relative z-10 flex flex-1 items-center justify-center w-full px-4">
+      {/* Logo centrado y grande - isolation auto para que mix-blend funcione con bg */}
+      <div className="flex flex-1 items-center justify-center w-full px-4" style={{ isolation: 'auto' }}>
         <img
-          src="/logo-iaclowd.png"
+          src="/logo-iaclowd-v3.png"
           alt="IAcloWd Logo"
-          className="max-h-[55vh] max-w-[90vw] object-contain mix-blend-lighten drop-shadow-[0_0_60px_hsl(var(--primary)/0.4)]"
+          className="relative max-h-[55vh] max-w-[90vw] object-contain mix-blend-screen"
         />
       </div>
 
