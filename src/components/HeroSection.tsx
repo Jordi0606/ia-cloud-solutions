@@ -12,11 +12,11 @@ const HeroSection = () => {
       <div className="absolute left-1/2 top-1/3 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
 
       {/* Logo centrado y grande */}
-      <div className="relative z-10 flex flex-1 items-center justify-center w-full px-8">
+      <div className="relative z-10 flex flex-1 items-center justify-center w-full px-4">
         <img
           src="/logo-iaclowd.png"
           alt="IAcloWd Logo"
-          className="max-h-[45vh] max-w-[80vw] object-contain drop-shadow-[0_0_40px_hsl(var(--primary)/0.3)]"
+          className="max-h-[55vh] max-w-[90vw] object-contain mix-blend-lighten drop-shadow-[0_0_60px_hsl(var(--primary)/0.4)]"
         />
       </div>
 
