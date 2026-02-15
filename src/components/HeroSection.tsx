@@ -6,7 +6,7 @@ const HeroSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-between overflow-hidden pt-14 pb-8 bg-background">
+    <section className="relative flex h-screen flex-col items-center justify-between overflow-hidden pt-10 pb-4 bg-background">
       {/* Background gradient */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/10" />
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
@@ -21,7 +21,7 @@ const HeroSection = () => {
       </div>
 
       {/* Texto y CTA abajo */}
-      <div className="relative z-10 px-4 text-center -mt-4">
+      <div className="relative z-10 px-4 text-center -mt-8">
         <h1 className="mb-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
           {t('hero.title')}
         </h1>
