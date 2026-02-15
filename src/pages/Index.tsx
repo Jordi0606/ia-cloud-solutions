@@ -3,7 +3,7 @@ import HeroSection from '@/components/HeroSection';
 import ServicesBar from '@/components/ServicesBar';
 import ServiceDetails from '@/components/ServiceDetails';
 import FaqContact from '@/components/FaqContact';
-import MapSection from '@/components/MapSection';
+
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -15,7 +15,7 @@ const Index = () => {
         <ServicesBar />
         <ServiceDetails />
         <FaqContact />
-        <MapSection />
+        
       </main>
       <Footer />
     </div>
