@@ -6,15 +6,15 @@ const socials = [
     key: 'instagram',
     icon: FaInstagram,
     href: 'https://www.instagram.com/', // TODO: replace with actual URL
-    gradient: 'from-purple-500 via-pink-500 to-orange-400',
-    hoverShadow: 'hover:shadow-pink-500/30',
+    iconColor: '#E1306C',
+    bgColor: 'bg-gradient-to-br from-[#833AB4] via-[#E1306C] to-[#F77737]',
   },
   {
     key: 'whatsapp',
     icon: FaWhatsapp,
     href: 'https://wa.me/', // TODO: replace with actual number
-    gradient: 'from-green-500 to-emerald-400',
-    hoverShadow: 'hover:shadow-green-500/30',
+    iconColor: '#25D366',
+    bgColor: 'bg-[#25D366]',
   },
 ];
 
@@ -32,15 +32,15 @@ const SocialConnect = () => {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-8">
-          {socials.map(({ key, icon: Icon, href, gradient, hoverShadow }) => (
+          {socials.map(({ key, icon: Icon, href, iconColor, bgColor }) => (
             <a
               key={key}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-8 transition-all hover:border-yellow-400 hover:shadow-lg ${hoverShadow}`}
+              className="group flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-8 transition-all hover:border-yellow-400 hover:shadow-lg"
             >
-              <div className={`flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br ${gradient} transition-transform group-hover:scale-110`}>
+              <div className={`flex h-16 w-16 items-center justify-center rounded-full ${bgColor} transition-transform group-hover:scale-110`}>
                 <Icon className="h-8 w-8 text-white" />
               </div>
               <span className="text-sm font-semibold text-foreground">
