@@ -75,6 +75,11 @@ export const translations: Record<Language, Record<string, string>> = {
     'footer.privacy': 'Política de Privacidad',
     'footer.cookies': 'Política de Cookies',
     'footer.terms': 'Condiciones',
+    // Social
+    'social.title': 'Conéctate con Nosotros',
+    'social.subtitle': 'Síguenos en redes sociales o escríbenos por WhatsApp',
+    'social.instagram': 'Instagram',
+    'social.whatsapp': 'WhatsApp',
     'footer.rights': '© 2025 IAcloWd. Todos los derechos reservados.',
   },
   ca: {
@@ -140,6 +145,10 @@ export const translations: Record<Language, Record<string, string>> = {
     'footer.privacy': 'Política de Privacitat',
     'footer.cookies': 'Política de Cookies',
     'footer.terms': 'Condicions',
+    'social.title': 'Connecta amb Nosaltres',
+    'social.subtitle': 'Segueix-nos a xarxes socials o escriu-nos per WhatsApp',
+    'social.instagram': 'Instagram',
+    'social.whatsapp': 'WhatsApp',
     'footer.rights': '© 2025 IAcloWd. Tots els drets reservats.',
   },
   en: {
@@ -205,6 +214,10 @@ export const translations: Record<Language, Record<string, string>> = {
     'footer.privacy': 'Privacy Policy',
     'footer.cookies': 'Cookie Policy',
     'footer.terms': 'Terms & Conditions',
+    'social.title': 'Connect with Us',
+    'social.subtitle': 'Follow us on social media or message us on WhatsApp',
+    'social.instagram': 'Instagram',
+    'social.whatsapp': 'WhatsApp',
     'footer.rights': '© 2025 IAcloWd. All rights reserved.',
   },
 };
