@@ -68,3 +68,12 @@
 html {
   scroll-behavior: smooth;
 }
+
+@keyframes flip-y {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.animate-flip-y {
+  animation: flip-y 6s ease-in-out infinite;
+}
