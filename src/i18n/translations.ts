@@ -81,6 +81,11 @@ export const translations: Record<Language, Record<string, string>> = {
     'social.instagram': 'Instagram',
     'social.whatsapp': 'WhatsApp',
     'footer.rights': '© 2025 IAcloWd. Todos los derechos reservados.',
+    // Blog section
+    'blog.section.title': 'Blog & Noticias',
+    'blog.section.viewAll': 'Ver todos',
+    'blog.section.readMore': 'Leer más',
+    'blog.section.empty': 'Pronto publicaremos novedades.',
   },
   ca: {
     'nav.services': 'Serveis',
@@ -150,6 +155,10 @@ export const translations: Record<Language, Record<string, string>> = {
     'social.instagram': 'Instagram',
     'social.whatsapp': 'WhatsApp',
     'footer.rights': '© 2025 IAcloWd. Tots els drets reservats.',
+    'blog.section.title': 'Blog & Notícies',
+    'blog.section.viewAll': 'Veure tots',
+    'blog.section.readMore': 'Llegir més',
+    'blog.section.empty': 'Aviat publicarem novetats.',
   },
   en: {
     'nav.services': 'Services',
@@ -219,5 +228,9 @@ export const translations: Record<Language, Record<string, string>> = {
     'social.instagram': 'Instagram',
     'social.whatsapp': 'WhatsApp',
     'footer.rights': '© 2025 IAcloWd. All rights reserved.',
+    'blog.section.title': 'Blog & News',
+    'blog.section.viewAll': 'View all',
+    'blog.section.readMore': 'Read more',
+    'blog.section.empty': 'News coming soon.',
   },
 };

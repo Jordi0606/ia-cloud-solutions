@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { LogOut, Trash2, Eye, EyeOff } from 'lucide-react';
+import { LogOut, Trash2, Eye, EyeOff, Sparkles, Loader2 } from 'lucide-react';
 
 interface ContactRequest {
   id: string;
@@ -39,6 +39,8 @@ const Admin = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [postForm, setPostForm] = useState({ title: '', slug: '', content: '', excerpt: '' });
   const [editingPost, setEditingPost] = useState<string | null>(null);
+  const [aiTopic, setAiTopic] = useState('');
+  const [aiLoading, setAiLoading] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) navigate('/auth');
@@ -109,6 +111,42 @@ const Admin = () => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate('/');
+  };
+
+  const handleAiGenerate = async () => {
+    if (!aiTopic.trim()) {
+      toast({ title: 'Escribe un tema para generar', variant: 'destructive' });
+      return;
+    }
+    setAiLoading(true);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-blog`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({ topic: aiTopic }),
+      });
+      if (!response.ok) {
+        const err = await response.json();
+        toast({ title: err.error || 'Error al generar', variant: 'destructive' });
+        return;
+      }
+      const data = await response.json();
+      setPostForm({
+        title: data.title || '',
+        slug: data.slug || '',
+        content: data.content || '',
+        excerpt: data.excerpt || '',
+      });
+      setAiTopic('');
+      toast({ title: '¡Borrador generado con IA!' });
+    } catch (e) {
+      toast({ title: 'Error de conexión', variant: 'destructive' });
+    } finally {
+      setAiLoading(false);
+    }
   };
 
   if (loading) return <div className="flex min-h-screen items-center justify-center bg-background text-foreground">Cargando...</div>;
@@ -185,6 +223,24 @@ const Admin = () => {
               <Card className="border-border bg-card">
                 <CardHeader><CardTitle>{editingPost ? 'Editar Post' : 'Nuevo Post'}</CardTitle></CardHeader>
                 <CardContent className="space-y-4">
+                  {/* AI Generation */}
+                  <div className="rounded-lg border border-primary/30 bg-primary/5 p-4">
+                    <Label className="mb-2 flex items-center gap-2 text-primary">
+                      <Sparkles className="h-4 w-4" /> Generar con IA
+                    </Label>
+                    <div className="flex gap-2">
+                      <Input
+                        value={aiTopic}
+                        onChange={(e) => setAiTopic(e.target.value)}
+                        placeholder="Ej: Beneficios de la IA para PYMEs"
+                        className="bg-secondary"
+                        onKeyDown={(e) => e.key === 'Enter' && handleAiGenerate()}
+                      />
+                      <Button onClick={handleAiGenerate} disabled={aiLoading} size="sm" className="shrink-0">
+                        {aiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
+                      </Button>
+                    </div>
+                  </div>
                   <div>
                     <Label>Título</Label>
                     <Input value={postForm.title} onChange={(e) => setPostForm({ ...postForm, title: e.target.value })} className="mt-1 bg-secondary" />
