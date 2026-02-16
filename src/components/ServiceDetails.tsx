@@ -24,7 +24,7 @@ const ServiceDetails = () => {
       <div className="container mx-auto px-4">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {details.map(({ id, key, icon }) => (
-            <Card key={id} id={id} className="group border-border bg-card transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
+            <Card key={id} id={id} className="group border-border bg-card transition-all hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/10">
               <CardContent className="p-6">
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
                   <img src={icon} alt="" className="h-10 w-10 object-contain" />

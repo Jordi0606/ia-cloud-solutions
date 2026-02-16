@@ -26,7 +26,7 @@ const ServicesBar = () => {
             <button
               key={key}
               onClick={() => document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' })}
-              className="group flex flex-col items-center gap-2 rounded-lg border border-transparent p-4 transition-all hover:border-primary/30 hover:bg-primary/5"
+              className="group flex flex-col items-center gap-2 rounded-lg border border-transparent p-4 transition-all hover:border-yellow-400 hover:bg-primary/5"
             >
               <img src={icon} alt="" className="h-10 w-10 object-contain transition-transform group-hover:scale-110" />
               <span className="text-center text-xs font-medium text-foreground/80 md:text-sm">
