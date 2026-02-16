@@ -12,11 +12,11 @@ const HeroSection = () => {
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
 
       {/* Logo centrado y grande - mix-blend-screen funde el fondo negro con el bg */}
-      <div className="flex flex-1 items-center justify-center w-full h-full px-4" style={{ isolation: 'auto', perspective: '1200px' }}>
+      <div className="flex flex-1 items-center justify-center w-full h-full px-4" style={{ isolation: 'auto' }}>
         <img
           src="/logo-iaclowd-v3.png"
           alt="IAcloWd Logo"
-          className="relative max-h-[65vh] w-full object-contain mix-blend-screen brightness-125 animate-flip-y"
+          className="relative max-h-[65vh] w-full object-contain mix-blend-screen brightness-125"
         />
       </div>
 
