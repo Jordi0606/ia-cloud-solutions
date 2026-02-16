@@ -16,7 +16,7 @@ const HeroSection = () => {
         <img
           src="/logo-iaclowd-v3.png"
           alt="IAcloWd Logo"
-          className="relative max-h-[65vh] w-full object-contain mix-blend-screen brightness-125 animate-slow-spin"
+          className="relative max-h-[65vh] w-full object-contain mix-blend-screen brightness-125"
         />
       </div>
 
