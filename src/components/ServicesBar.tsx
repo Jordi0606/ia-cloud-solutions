@@ -28,7 +28,7 @@ const ServicesBar = () => {
               onClick={() => document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' })}
               className="group flex flex-col items-center gap-2 rounded-lg border border-transparent p-4 transition-all hover:border-yellow-400 hover:bg-primary/5"
             >
-              <img src={icon} alt="" className="h-10 w-10 object-contain transition-transform group-hover:scale-110" />
+              <img src={icon} alt="" className="h-10 w-16 object-cover mix-blend-screen transition-transform group-hover:scale-110" />
               <span className="text-center text-xs font-medium text-foreground/80 md:text-sm">
                 {t(`sbar.${key}`)}
               </span>

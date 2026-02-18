@@ -26,8 +26,8 @@ const ServiceDetails = () => {
           {details.map(({ id, key, icon }) => (
             <Card key={id} id={id} className="group border-border bg-card transition-all hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/10">
               <CardContent className="p-6">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                  <img src={icon} alt="" className="h-10 w-10 object-contain" />
+                <div className="mb-4 flex h-16 w-28 items-center justify-center overflow-hidden rounded-lg">
+                  <img src={icon} alt="" className="h-full w-full object-cover mix-blend-screen" />
                 </div>
                 <h3 className="mb-3 font-display text-lg font-semibold text-foreground">
                   {t(`detail.${key}.title`)}
