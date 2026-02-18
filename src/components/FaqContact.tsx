@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Input } from '@/components/ui/input';
+import { Mail } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -91,6 +92,13 @@ const FaqContact = () => {
               <Button type="submit" disabled={loading} className="w-full">
                 {loading ? '...' : t('contact.send')}
               </Button>
+              <a
+                href="mailto:info@iaclowd.com"
+                className="mt-4 flex items-center justify-center gap-3 text-lg font-semibold text-foreground transition hover:text-primary"
+              >
+                <Mail className="h-7 w-7 text-yellow-400" />
+                info@iaclowd.com
+              </a>
             </form>
           </div>
         </div>
