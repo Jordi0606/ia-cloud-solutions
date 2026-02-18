@@ -92,16 +92,16 @@ const FaqContact = () => {
               <Button type="submit" disabled={loading} className="w-full">
                 {loading ? '...' : t('contact.send')}
               </Button>
-              <a
-                href="mailto:info@iaclowd.com"
-                className="mt-4 flex items-center justify-center gap-3 text-lg font-semibold text-foreground transition hover:text-primary"
-              >
-                <Mail className="h-7 w-7 text-yellow-400" />
-                info@iaclowd.com
-              </a>
             </form>
           </div>
         </div>
+        <a
+          href="mailto:info@iaclowd.com"
+          className="mt-8 flex items-center justify-center gap-3 text-lg font-semibold text-foreground transition hover:text-primary"
+        >
+          <Mail className="h-7 w-7 text-yellow-400" />
+          info@iaclowd.com
+        </a>
       </div>
     </section>
   );
