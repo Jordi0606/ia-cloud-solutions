@@ -89,7 +89,7 @@ const FaqContact = () => {
                 <Label htmlFor="message">{t('contact.message')}</Label>
                 <Textarea id="message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="mt-1 bg-secondary" rows={4} required />
               </div>
-              <Button type="submit" disabled={loading} className="w-full">
+              <Button type="submit" disabled={loading} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                 {loading ? '...' : t('contact.send')}
               </Button>
             </form>
