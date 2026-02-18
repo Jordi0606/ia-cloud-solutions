@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Calendar } from 'lucide-react';
+import blogPlaceholder1 from '@/assets/blog-placeholder-1.jpg';
+import blogPlaceholder2 from '@/assets/blog-placeholder-2.jpg';
+import blogPlaceholder3 from '@/assets/blog-placeholder-3.jpg';
+
+const placeholders = [blogPlaceholder1, blogPlaceholder2, blogPlaceholder3];
 
 interface Post {
   id: string;
   title: string;
   slug: string;
   excerpt: string | null;
+  cover_image_url: string | null;
   created_at: string;
 }
 
@@ -17,31 +22,47 @@ const Blog = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    supabase.from('blog_posts').select('id, title, slug, excerpt, created_at').eq('published', true).order('created_at', { ascending: false })
+    supabase.from('blog_posts').select('id, title, slug, excerpt, cover_image_url, created_at').eq('published', true).order('created_at', { ascending: false })
       .then(({ data }) => { if (data) setPosts(data as Post[]); });
   }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="container mx-auto px-4 py-12">
-        <div className="mb-8 flex items-center gap-4">
-          <Link to="/"><Button variant="ghost" size="sm"><ArrowLeft className="mr-2 h-4 w-4" />Volver</Button></Link>
-          <h1 className="font-display text-3xl font-bold">Blog & Noticias</h1>
+      {/* Header */}
+      <div className="relative border-b border-border bg-gradient-to-b from-primary/8 to-transparent">
+        <div className="container mx-auto px-4 py-12">
+          <div className="flex items-center gap-4">
+            <Link to="/"><Button variant="ghost" size="sm"><ArrowLeft className="mr-2 h-4 w-4" />Volver</Button></Link>
+            <h1 className="font-display text-3xl font-bold">Blog & Noticias</h1>
+          </div>
         </div>
+      </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((p) => (
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((p, i) => (
             <Link key={p.id} to={`/blog/${p.slug}`}>
-              <Card className="group border-border bg-card transition hover:border-primary/40 hover:shadow-lg">
-                <CardContent className="p-6">
-                  <p className="mb-2 text-xs text-muted-foreground">{new Date(p.created_at).toLocaleDateString()}</p>
-                  <h2 className="mb-2 font-display text-lg font-semibold group-hover:text-primary transition">{p.title}</h2>
-                  {p.excerpt && <p className="text-sm text-muted-foreground">{p.excerpt}</p>}
-                </CardContent>
-              </Card>
+              <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1">
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={p.cover_image_url || placeholders[i % placeholders.length]}
+                    alt={p.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                  <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-card/80 px-3 py-1 backdrop-blur-sm">
+                    <Calendar className="h-3 w-3 text-primary" />
+                    <span className="text-xs text-muted-foreground">{new Date(p.created_at).toLocaleDateString()}</span>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <h2 className="mb-3 font-display text-lg font-semibold leading-tight transition group-hover:text-primary">{p.title}</h2>
+                  {p.excerpt && <p className="flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">{p.excerpt}</p>}
+                </div>
+              </article>
             </Link>
           ))}
-          {posts.length === 0 && <p className="text-muted-foreground col-span-full text-center">Pronto publicaremos novedades.</p>}
+          {posts.length === 0 && <p className="text-muted-foreground col-span-full text-center py-12">Pronto publicaremos novedades.</p>}
         </div>
       </div>
     </div>
