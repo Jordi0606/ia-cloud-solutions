@@ -1,5 +1,4 @@
 import { useLanguage } from '@/i18n/LanguageContext';
-import { Mail } from 'lucide-react';
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -14,13 +13,7 @@ const Footer = () => {
             <a href="#" className="transition hover:text-primary">{t('footer.cookies')}</a>
             <a href="#" className="transition hover:text-primary">{t('footer.terms')}</a>
           </div>
-          <div className="flex items-center gap-4">
-            <a href="mailto:info@iaclowd.com" className="flex items-center gap-1.5 text-xs text-muted-foreground transition hover:text-primary">
-              <Mail className="h-3.5 w-3.5" />
-              info@iaclowd.com
-            </a>
-            <p className="text-xs text-muted-foreground">{t('footer.rights')}</p>
-          </div>
+          <p className="text-xs text-muted-foreground">{t('footer.rights')}</p>
         </div>
       </div>
     </footer>
