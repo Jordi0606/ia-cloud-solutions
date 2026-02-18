@@ -89,7 +89,7 @@ const Header = () => {
 
           {/* Email */}
           <a href="mailto:info@iaclowd.com" className="flex items-center gap-1.5 text-sm text-foreground/70 transition hover:text-primary">
-            <Mail className="h-4 w-4" />
+            <Mail className="h-5 w-5 text-yellow-400" />
             <span className="hidden lg:inline">info@iaclowd.com</span>
           </a>
 
