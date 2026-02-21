@@ -11,7 +11,7 @@ const socials = [
   {
     key: 'whatsapp',
     renderIcon: (cls: string) => <FaWhatsapp className={cls} style={{ color: '#25D366' }} />,
-    href: 'https://wa.me/', // TODO: replace with actual number
+    href: 'https://wa.me/34613825828',
   },
 ];
 
