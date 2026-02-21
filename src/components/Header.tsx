@@ -12,13 +12,20 @@ import { Input } from '@/components/ui/input';
 
 const langLabels: Record<Language, string> = { ca: 'Català', es: 'Castellano', en: 'English' };
 
-const Header = () => {
+const Header = ({ onShowContact }: { onShowContact?: () => void }) => {
   const { t, language, setLanguage } = useLanguage();
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    if (id === 'contact' && onShowContact) {
+      onShowContact();
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
     setMobileOpen(false);
   };
 
