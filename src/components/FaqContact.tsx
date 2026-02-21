@@ -26,7 +26,7 @@ const FaqContact = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', phone: '', priority: 'media' as 'alta' | 'media' | 'baja', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', priority: undefined as 'alta' | 'media' | 'baja' | undefined, message: '' });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ const FaqContact = () => {
       toast({ title: t('contact.error'), variant: 'destructive' });
     } else {
       toast({ title: t('contact.success') });
-      setForm({ name: '', email: '', phone: '', priority: 'media', message: '' });
+      setForm({ name: '', email: '', phone: '', priority: undefined, message: '' });
     }
   };
 
@@ -93,7 +93,7 @@ const FaqContact = () => {
                 <Label>{t('contact.priority')}</Label>
                 <Select value={form.priority} onValueChange={(val) => setForm({ ...form, priority: val as 'alta' | 'media' | 'baja' })}>
                   <SelectTrigger className="mt-1 bg-secondary">
-                    <SelectValue />
+                    <SelectValue placeholder="—" />
                   </SelectTrigger>
                   <SelectContent className="bg-card border-border">
                     <SelectItem value="alta">{t('contact.priority.high')}</SelectItem>
