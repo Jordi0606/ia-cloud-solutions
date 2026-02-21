@@ -55,6 +55,7 @@ export type Database = {
       }
       contact_requests: {
         Row: {
+          company: string | null
           created_at: string
           email: string
           id: string
@@ -64,6 +65,7 @@ export type Database = {
           priority: string | null
         }
         Insert: {
+          company?: string | null
           created_at?: string
           email: string
           id?: string
@@ -73,6 +75,7 @@ export type Database = {
           priority?: string | null
         }
         Update: {
+          company?: string | null
           created_at?: string
           email?: string
           id?: string
