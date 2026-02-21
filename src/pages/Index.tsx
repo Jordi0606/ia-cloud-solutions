@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ServicesBar from '@/components/ServicesBar';
@@ -9,18 +8,16 @@ import FaqContact from '@/components/FaqContact';
 import Footer from '@/components/Footer';
 
 const Index = () => {
-  const [contactVisible, setContactVisible] = useState(false);
-
   return (
     <div className="min-h-screen bg-background">
-      <Header onShowContact={() => setContactVisible(true)} />
+      <Header />
       <main>
         <HeroSection />
         <ServicesBar />
         <ServiceDetails />
         <BlogSection />
         <SocialConnect />
-        <FaqContact visible={contactVisible} />
+        <FaqContact />
         
       </main>
       <Footer />
