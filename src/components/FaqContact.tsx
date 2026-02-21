@@ -16,7 +16,7 @@ const contactSchema = z.object({
   name: z.string().trim().min(1, 'Required').max(100),
   email: z.string().trim().email('Invalid email').max(255),
   phone: z.string().trim().max(20).optional(),
-  priority: z.enum(['alta', 'media', 'baja']),
+  priority: z.enum(['alta', 'media', 'baja'], { required_error: 'Selecciona una prioridad' }),
   message: z.string().trim().min(1, 'Required').max(2000),
 });
 
@@ -26,7 +26,7 @@ const FaqContact = ({ visible = false }: { visible?: boolean }) => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', phone: '', priority: 'media' as 'alta' | 'media' | 'baja', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', priority: '' as '' | 'alta' | 'media' | 'baja', message: '' });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ const FaqContact = ({ visible = false }: { visible?: boolean }) => {
       toast({ title: t('contact.error'), variant: 'destructive' });
     } else {
       toast({ title: t('contact.success') });
-      setForm({ name: '', email: '', phone: '', priority: 'media', message: '' });
+      setForm({ name: '', email: '', phone: '', priority: '', message: '' });
     }
   };
 
@@ -95,9 +95,9 @@ const FaqContact = ({ visible = false }: { visible?: boolean }) => {
               </div>
               <div>
                 <Label>{t('contact.priority')}</Label>
-                <Select value={form.priority} onValueChange={(val) => setForm({ ...form, priority: val as 'alta' | 'media' | 'baja' })}>
+                <Select value={form.priority || undefined} onValueChange={(val) => setForm({ ...form, priority: val as 'alta' | 'media' | 'baja' })}>
                   <SelectTrigger className="mt-1 bg-secondary">
-                    <SelectValue />
+                    <SelectValue placeholder={t('contact.priority')} />
                   </SelectTrigger>
                   <SelectContent className="bg-card border-border">
                     <SelectItem value="alta">{t('contact.priority.high')}</SelectItem>
