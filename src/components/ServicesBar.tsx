@@ -48,7 +48,7 @@ const ServicesBar = () => {
         <img
           src={icon}
           alt=""
-          className={`h-10 w-16 object-cover mix-blend-screen transition-transform duration-300 ${
+          className={`h-10 w-16 object-contain mix-blend-screen transition-transform duration-300 ${
             isExpanded ? 'scale-125' : 'group-hover:scale-110'
           }`}
         />
