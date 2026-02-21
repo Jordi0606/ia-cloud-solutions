@@ -64,6 +64,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // Contact form
     'contact.title': 'Contáctanos',
     'contact.name': 'Nombre',
+    'contact.company': 'Empresa',
     'contact.email.label': 'Email',
     'contact.phone': 'Teléfono',
     'contact.priority': 'Prioridad',
@@ -148,6 +149,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'faq.a5': "Sí, tots els nostres projectes inclouen suport tècnic i manteniment.",
     'contact.title': "Contacta'ns",
     'contact.name': 'Nom',
+    'contact.company': 'Empresa',
     'contact.email.label': 'Email',
     'contact.phone': 'Telèfon',
     'contact.priority': 'Prioritat',
@@ -228,6 +230,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'faq.a5': 'Yes, all our projects include technical support and maintenance.',
     'contact.title': 'Contact Us',
     'contact.name': 'Name',
+    'contact.company': 'Company',
     'contact.email.label': 'Email',
     'contact.phone': 'Phone',
     'contact.priority': 'Priority',

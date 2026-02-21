@@ -14,6 +14,7 @@ import { z } from 'zod';
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, 'Required').max(100),
+  company: z.string().trim().max(100).optional(),
   email: z.string().trim().email('Invalid email').max(255),
   phone: z.string().trim().max(20).optional(),
   priority: z.enum(['alta', 'media', 'baja']),
@@ -26,7 +27,7 @@ const FaqContact = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', phone: '', priority: undefined as 'alta' | 'media' | 'baja' | undefined, message: '' });
+  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', priority: undefined as 'alta' | 'media' | 'baja' | undefined, message: '' });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +49,7 @@ const FaqContact = () => {
       toast({ title: t('contact.error'), variant: 'destructive' });
     } else {
       toast({ title: t('contact.success') });
-      setForm({ name: '', email: '', phone: '', priority: undefined, message: '' });
+      setForm({ name: '', company: '', email: '', phone: '', priority: undefined, message: '' });
     }
   };
 
@@ -80,6 +81,10 @@ const FaqContact = () => {
               <div>
                 <Label htmlFor="name">{t('contact.name')}</Label>
                 <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="mt-1 bg-secondary" required />
+              </div>
+              <div>
+                <Label htmlFor="company">{t('contact.company')}</Label>
+                <Input id="company" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className="mt-1 bg-secondary" />
               </div>
               <div>
                 <Label htmlFor="email">{t('contact.email.label')}</Label>
