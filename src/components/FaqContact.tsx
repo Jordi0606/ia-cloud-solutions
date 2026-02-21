@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
-import { useContactVisibility } from '@/contexts/ContactVisibilityContext';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Input } from '@/components/ui/input';
 import { Mail, Phone } from 'lucide-react';
@@ -26,7 +25,6 @@ const faqKeys = ['q1', 'q2', 'q3', 'q4', 'q5'];
 const FaqContact = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
-  const { showContact } = useContactVisibility();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', phone: '', priority: 'media' as 'alta' | 'media' | 'baja', message: '' });
 
@@ -78,46 +76,40 @@ const FaqContact = () => {
           {/* Contact Form */}
           <div>
             <h2 className="mb-8 font-display text-3xl font-bold text-foreground">{t('contact.title')}</h2>
-            {showContact ? (
-              <form onSubmit={handleSubmit} className="space-y-4 animate-fade-in">
-                <div>
-                  <Label htmlFor="name">{t('contact.name')}</Label>
-                  <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="mt-1 bg-secondary" required />
-                </div>
-                <div>
-                  <Label htmlFor="email">{t('contact.email.label')}</Label>
-                  <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="mt-1 bg-secondary" required />
-                </div>
-                <div>
-                  <Label htmlFor="phone">{t('contact.phone')}</Label>
-                  <Input id="phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="mt-1 bg-secondary" />
-                </div>
-                <div>
-                  <Label>{t('contact.priority')}</Label>
-                  <Select value={form.priority} onValueChange={(val) => setForm({ ...form, priority: val as 'alta' | 'media' | 'baja' })}>
-                    <SelectTrigger className="mt-1 bg-secondary">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-card border-border">
-                      <SelectItem value="alta">{t('contact.priority.high')}</SelectItem>
-                      <SelectItem value="media">{t('contact.priority.medium')}</SelectItem>
-                      <SelectItem value="baja">{t('contact.priority.low')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label htmlFor="message">{t('contact.message')}</Label>
-                  <Textarea id="message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="mt-1 bg-secondary" rows={4} required />
-                </div>
-                <Button type="submit" disabled={loading} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                  {loading ? '...' : t('contact.send')}
-                </Button>
-              </form>
-            ) : (
-              <div className="flex h-48 items-center justify-center rounded-lg border border-dashed border-border text-muted-foreground">
-                <p className="text-center text-sm">{t('contact.placeholder')}</p>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <Label htmlFor="name">{t('contact.name')}</Label>
+                <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="mt-1 bg-secondary" required />
               </div>
-            )}
+              <div>
+                <Label htmlFor="email">{t('contact.email.label')}</Label>
+                <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="mt-1 bg-secondary" required />
+              </div>
+              <div>
+                <Label htmlFor="phone">{t('contact.phone')}</Label>
+                <Input id="phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="mt-1 bg-secondary" />
+              </div>
+              <div>
+                <Label>{t('contact.priority')}</Label>
+                <Select value={form.priority} onValueChange={(val) => setForm({ ...form, priority: val as 'alta' | 'media' | 'baja' })}>
+                  <SelectTrigger className="mt-1 bg-secondary">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-card border-border">
+                    <SelectItem value="alta">{t('contact.priority.high')}</SelectItem>
+                    <SelectItem value="media">{t('contact.priority.medium')}</SelectItem>
+                    <SelectItem value="baja">{t('contact.priority.low')}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="message">{t('contact.message')}</Label>
+                <Textarea id="message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="mt-1 bg-secondary" rows={4} required />
+              </div>
+              <Button type="submit" disabled={loading} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                {loading ? '...' : t('contact.send')}
+              </Button>
+            </form>
           </div>
         </div>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10">

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
-import { useContactVisibility } from '@/contexts/ContactVisibilityContext';
 import { Language } from '@/i18n/translations';
 import { Search, ChevronDown, Menu, X, Mail } from 'lucide-react';
 import {
@@ -15,7 +14,6 @@ const langLabels: Record<Language, string> = { ca: 'Català', es: 'Castellano', 
 
 const Header = () => {
   const { t, language, setLanguage } = useLanguage();
-  const { openContact } = useContactVisibility();
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -66,7 +64,7 @@ const Header = () => {
               {t('nav.contact')} <ChevronDown className="h-3 w-3" />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-popover border-border">
-              <DropdownMenuItem onClick={() => { openContact(); scrollTo('contact'); }}>{t('contact.form')}</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => scrollTo('contact')}>{t('contact.form')}</DropdownMenuItem>
               <DropdownMenuItem asChild><a href="https://wa.me/34613825828" target="_blank" rel="noopener noreferrer">{t('contact.whatsapp')}</a></DropdownMenuItem>
               <DropdownMenuItem>{t('contact.email')}</DropdownMenuItem>
               <DropdownMenuItem asChild><a href="https://calendar.app.google/WoH8WjWrXGG9CWuKA" target="_blank" rel="noopener noreferrer">{t('contact.meeting')}</a></DropdownMenuItem>
