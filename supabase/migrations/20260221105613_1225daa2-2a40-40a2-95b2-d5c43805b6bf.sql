@@ -1,0 +1,1 @@
+ALTER TABLE public.contact_requests ADD COLUMN priority text DEFAULT 'media' CHECK (priority IN ('alta', 'media', 'baja'));
