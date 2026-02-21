@@ -22,7 +22,7 @@ const contactSchema = z.object({
 
 const faqKeys = ['q1', 'q2', 'q3', 'q4', 'q5'];
 
-const FaqContact = () => {
+const FaqContact = ({ visible = false }: { visible?: boolean }) => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
@@ -51,6 +51,10 @@ const FaqContact = () => {
       setForm({ name: '', email: '', phone: '', priority: 'media', message: '' });
     }
   };
+
+  if (!visible) {
+    return <section id="contact" className="py-20" />;
+  }
 
   return (
     <section id="contact" className="py-20">
