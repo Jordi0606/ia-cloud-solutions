@@ -65,7 +65,7 @@ const Header = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-popover border-border">
               <DropdownMenuItem onClick={() => scrollTo('contact')}>{t('contact.form')}</DropdownMenuItem>
-              <DropdownMenuItem>{t('contact.whatsapp')}</DropdownMenuItem>
+              <DropdownMenuItem asChild><a href="https://wa.me/34613825828" target="_blank" rel="noopener noreferrer">{t('contact.whatsapp')}</a></DropdownMenuItem>
               <DropdownMenuItem>{t('contact.email')}</DropdownMenuItem>
               <DropdownMenuItem>{t('contact.meeting')}</DropdownMenuItem>
             </DropdownMenuContent>
