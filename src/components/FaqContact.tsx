@@ -97,7 +97,7 @@ const FaqContact = ({ visible = false }: { visible?: boolean }) => {
                 <Label>{t('contact.priority')}</Label>
                 <Select value={form.priority || undefined} onValueChange={(val) => setForm({ ...form, priority: val as 'alta' | 'media' | 'baja' })}>
                   <SelectTrigger className="mt-1 bg-secondary">
-                    <SelectValue placeholder={t('contact.priority')} />
+                    <SelectValue placeholder=" " />
                   </SelectTrigger>
                   <SelectContent className="bg-card border-border">
                     <SelectItem value="alta">{t('contact.priority.high')}</SelectItem>
