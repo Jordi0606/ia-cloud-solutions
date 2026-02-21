@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/i18n/LanguageContext';
 
 const Footer = () => {
@@ -8,10 +9,10 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
           <div className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground md:gap-6">
-            <a href="#" className="transition hover:text-primary">{t('footer.legal')}</a>
-            <a href="#" className="transition hover:text-primary">{t('footer.privacy')}</a>
-            <a href="#" className="transition hover:text-primary">{t('footer.cookies')}</a>
-            <a href="#" className="transition hover:text-primary">{t('footer.terms')}</a>
+            <Link to="/aviso-legal" className="transition hover:text-primary">{t('footer.legal')}</Link>
+            <Link to="/privacidad" className="transition hover:text-primary">{t('footer.privacy')}</Link>
+            <Link to="/cookies" className="transition hover:text-primary">{t('footer.cookies')}</Link>
+            <Link to="/condiciones" className="transition hover:text-primary">{t('footer.terms')}</Link>
           </div>
           <p className="text-xs text-muted-foreground">{t('footer.rights')}</p>
         </div>
