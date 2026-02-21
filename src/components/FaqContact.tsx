@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Input } from '@/components/ui/input';
-import { Mail } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
@@ -111,13 +112,24 @@ const FaqContact = () => {
             </form>
           </div>
         </div>
-        <a
-          href="mailto:info@iaclowd.com"
-          className="mt-8 flex items-center justify-center gap-3 text-lg font-semibold text-foreground transition hover:text-primary"
-        >
-          <Mail className="h-7 w-7 text-yellow-400" />
-          info@iaclowd.com
-        </a>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+          <a
+            href="mailto:info@iaclowd.com"
+            className="flex items-center gap-3 text-lg font-semibold text-foreground transition hover:text-primary"
+          >
+            <Mail className="h-7 w-7 text-yellow-400" />
+            info@iaclowd.com
+          </a>
+          <a
+            href="https://wa.me/34613825828"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 text-lg font-semibold text-foreground transition hover:text-green-400"
+          >
+            <FaWhatsapp className="h-7 w-7 text-green-500" />
+            +34 613 82 58 28
+          </a>
+        </div>
       </div>
     </section>
   );
