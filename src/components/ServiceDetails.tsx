@@ -6,6 +6,7 @@ import iconBrain from '@/assets/icon-brain.png';
 import iconMonetize from '@/assets/icon-monetize.png';
 import iconIntegral from '@/assets/icon-integral.png';
 import iconChats from '@/assets/icon-chats.png';
+import iconTraining from '@/assets/icon-training.png';
 
 const details = [
   { id: 'detail-bots', key: 'bots', icon: iconBots },
@@ -14,6 +15,7 @@ const details = [
   { id: 'detail-monetize', key: 'monetize', icon: iconMonetize },
   { id: 'detail-integral', key: 'integral', icon: iconIntegral },
   { id: 'detail-chats', key: 'chats', icon: iconChats },
+  { id: 'detail-training', key: 'training', icon: iconTraining },
 ];
 
 const ServiceDetails = () => {

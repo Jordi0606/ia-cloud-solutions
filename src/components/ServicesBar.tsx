@@ -5,6 +5,7 @@ import iconBrain from '@/assets/icon-brain.png';
 import iconMonetize from '@/assets/icon-monetize.png';
 import iconIntegral from '@/assets/icon-integral.png';
 import iconChats from '@/assets/icon-chats.png';
+import iconTraining from '@/assets/icon-training.png';
 
 const services = [
   { key: 'bots', icon: iconBots, target: 'detail-bots' },
@@ -13,6 +14,7 @@ const services = [
   { key: 'monetize', icon: iconMonetize, target: 'detail-monetize' },
   { key: 'integral', icon: iconIntegral, target: 'detail-integral' },
   { key: 'chats', icon: iconChats, target: 'detail-chats' },
+  { key: 'training', icon: iconTraining, target: 'detail-training' },
 ];
 
 const ServicesBar = () => {
