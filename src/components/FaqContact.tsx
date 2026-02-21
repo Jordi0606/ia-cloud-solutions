@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Input } from '@/components/ui/input';
 import { Mail } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { supabase } from '@/integrations/supabase/client';
@@ -14,6 +15,7 @@ const contactSchema = z.object({
   name: z.string().trim().min(1, 'Required').max(100),
   email: z.string().trim().email('Invalid email').max(255),
   phone: z.string().trim().max(20).optional(),
+  priority: z.enum(['alta', 'media', 'baja']),
   message: z.string().trim().min(1, 'Required').max(2000),
 });
 
@@ -23,7 +25,7 @@ const FaqContact = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', priority: 'media' as 'alta' | 'media' | 'baja', message: '' });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,6 +39,7 @@ const FaqContact = () => {
       name: result.data.name,
       email: result.data.email,
       phone: result.data.phone || null,
+      priority: result.data.priority,
       message: result.data.message,
     }]);
     setLoading(false);
@@ -44,7 +47,7 @@ const FaqContact = () => {
       toast({ title: t('contact.error'), variant: 'destructive' });
     } else {
       toast({ title: t('contact.success') });
-      setForm({ name: '', email: '', phone: '', message: '' });
+      setForm({ name: '', email: '', phone: '', priority: 'media', message: '' });
     }
   };
 
@@ -84,6 +87,19 @@ const FaqContact = () => {
               <div>
                 <Label htmlFor="phone">{t('contact.phone')}</Label>
                 <Input id="phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="mt-1 bg-secondary" />
+              </div>
+              <div>
+                <Label>{t('contact.priority')}</Label>
+                <Select value={form.priority} onValueChange={(val) => setForm({ ...form, priority: val as 'alta' | 'media' | 'baja' })}>
+                  <SelectTrigger className="mt-1 bg-secondary">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-card border-border">
+                    <SelectItem value="alta">{t('contact.priority.high')}</SelectItem>
+                    <SelectItem value="media">{t('contact.priority.medium')}</SelectItem>
+                    <SelectItem value="baja">{t('contact.priority.low')}</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <Label htmlFor="message">{t('contact.message')}</Label>

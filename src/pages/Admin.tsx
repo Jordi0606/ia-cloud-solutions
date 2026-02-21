@@ -17,6 +17,7 @@ interface ContactRequest {
   name: string;
   email: string;
   phone: string | null;
+  priority: string | null;
   message: string;
   created_at: string;
 }
@@ -191,6 +192,7 @@ const Admin = () => {
                         <TableHead>Nombre</TableHead>
                         <TableHead>Email</TableHead>
                         <TableHead>Teléfono</TableHead>
+                        <TableHead>Prioridad</TableHead>
                         <TableHead>Mensaje</TableHead>
                         <TableHead></TableHead>
                       </TableRow>
@@ -202,6 +204,7 @@ const Admin = () => {
                           <TableCell className="font-medium">{c.name}</TableCell>
                           <TableCell>{c.email}</TableCell>
                           <TableCell>{c.phone || '-'}</TableCell>
+                          <TableCell className="capitalize">{c.priority || '-'}</TableCell>
                           <TableCell className="max-w-xs truncate">{c.message}</TableCell>
                           <TableCell>
                             <Button variant="ghost" size="sm" onClick={() => deleteContact(c.id)}><Trash2 className="h-4 w-4 text-destructive" /></Button>
@@ -209,7 +212,7 @@ const Admin = () => {
                         </TableRow>
                       ))}
                       {contacts.length === 0 && (
-                        <TableRow><TableCell colSpan={6} className="text-center text-muted-foreground">Sin solicitudes</TableCell></TableRow>
+                        <TableRow><TableCell colSpan={7} className="text-center text-muted-foreground">Sin solicitudes</TableCell></TableRow>
                       )}
                     </TableBody>
                   </Table>
