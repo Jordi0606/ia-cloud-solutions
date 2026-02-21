@@ -72,6 +72,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'contact.priority.low': 'Baja',
     'contact.message': 'Mensaje',
     'contact.send': 'Enviar mensaje',
+    'contact.placeholder': 'Usa el menú "Contactar → Formulario rápido" para abrir el formulario.',
     'contact.success': '¡Mensaje enviado correctamente!',
     'contact.error': 'Error al enviar el mensaje. Inténtalo de nuevo.',
     // Map
@@ -156,6 +157,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'contact.priority.low': 'Baixa',
     'contact.message': 'Missatge',
     'contact.send': 'Enviar missatge',
+    'contact.placeholder': 'Usa el menú "Contactar → Formulari ràpid" per obrir el formulari.',
     'contact.success': 'Missatge enviat correctament!',
     'contact.error': "Error en enviar el missatge. Torna-ho a provar.",
     'map.title': 'La nostra Ubicació',
@@ -236,6 +238,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'contact.priority.low': 'Low',
     'contact.message': 'Message',
     'contact.send': 'Send message',
+    'contact.placeholder': 'Use the menu "Contact → Quick Form" to open the form.',
     'contact.success': 'Message sent successfully!',
     'contact.error': 'Error sending message. Please try again.',
     'map.title': 'Our Location',
