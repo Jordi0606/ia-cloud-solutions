@@ -118,7 +118,7 @@ Escribe en ${lang}. El slug debe ser en minúsculas, sin acentos, con guiones.`,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     } catch {
-      return new Response(JSON.stringify({ error: "Error al procesar la respuesta de IA", raw: rawContent }), {
+      return new Response(JSON.stringify({ error: "Error al procesar la respuesta de IA" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
