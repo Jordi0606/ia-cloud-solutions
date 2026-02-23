@@ -125,7 +125,7 @@ Escribe en ${lang}. El slug debe ser en minúsculas, sin acentos, con guiones.`,
     }
   } catch (e) {
     console.error("generate-blog error:", e);
-    return new Response(JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }), {
+    return new Response(JSON.stringify({ error: "Servicio temporalmente no disponible" }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
