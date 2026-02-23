@@ -100,7 +100,7 @@ Responde en el idioma en el que te escriban.`,
     });
   } catch (e) {
     console.error("chat error:", e);
-    return new Response(JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }), {
+    return new Response(JSON.stringify({ error: "Servicio temporalmente no disponible" }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
