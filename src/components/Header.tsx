@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { Language } from '@/i18n/translations';
-import { Search, ChevronDown, Menu, X, Mail } from 'lucide-react';
+import { Search, ChevronDown, Menu, X } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -86,12 +86,6 @@ const Header = () => {
               </button>
             )}
           </div>
-
-          {/* Email */}
-          <a href="mailto:info@iaclowd.com" className="flex items-center gap-1.5 text-sm text-foreground/70 transition hover:text-primary">
-            <Mail className="h-5 w-5 text-yellow-400" />
-            <span className="hidden lg:inline">info@iaclowd.com</span>
-          </a>
 
           {/* Language */}
           <DropdownMenu>
