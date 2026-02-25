@@ -55,7 +55,7 @@ const Admin = () => {
   }, [user, isAdmin]);
 
   const fetchContacts = async () => {
-    const { data } = await supabase.from('contact_requests').select('*').order('created_at', { ascending: false });
+    const { data } = await supabase.from('contact_request').select('*').order('created_at', { ascending: false });
     if (data) setContacts(data);
   };
 
@@ -105,7 +105,7 @@ const Admin = () => {
   };
 
   const deleteContact = async (id: string) => {
-    await supabase.from('contact_requests').delete().eq('id', id);
+    await supabase.from('contact_request').delete().eq('id', id);
     fetchContacts();
   };
 

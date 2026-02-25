@@ -1,0 +1,1 @@
+ALTER TABLE public.contact_requests RENAME TO contact_request;
