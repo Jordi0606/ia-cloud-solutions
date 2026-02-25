@@ -53,7 +53,7 @@ export type Database = {
         }
         Relationships: []
       }
-      contact_requests: {
+      contact_request: {
         Row: {
           company: string | null
           created_at: string

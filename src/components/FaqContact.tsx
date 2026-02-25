@@ -44,7 +44,7 @@ const FaqContact = () => {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.from("contact_requests").insert([
+    const { error } = await supabase.from("contact_request").insert([
       {
         name: result.data.name,
         company: result.data.company || null,
