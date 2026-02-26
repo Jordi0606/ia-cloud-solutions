@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown';
 type Msg = { role: 'user' | 'assistant'; content: string };
 
 interface SpeechRecognitionType extends EventTarget {
+  continuous: boolean;
   lang: string;
   interimResults: boolean;
   maxAlternatives: number;
@@ -40,21 +41,39 @@ const AiChatWidget = () => {
     setIsListening(false);
   }, []);
 
-  const startListening = useCallback(() => {
+  const startListening = useCallback(async () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
       alert('Tu navegador no soporta reconocimiento de voz.');
       return;
     }
+    try {
+      // Request microphone permission directly in click handler
+      await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch {
+      alert('Se necesita acceso al micrófono para usar esta función.');
+      return;
+    }
     const recognition = new SpeechRecognition();
     recognition.lang = 'es-ES';
+    recognition.continuous = true;
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
     recognition.onresult = (event: SpeechRecognitionEvent) => {
-      const transcript = event.results[0][0].transcript;
-      setInput((prev) => (prev ? prev + ' ' + transcript : transcript));
+      let transcript = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        if (event.results[i].isFinal) {
+          transcript += event.results[i][0].transcript;
+        }
+      }
+      if (transcript) {
+        setInput((prev) => (prev ? prev + ' ' + transcript : transcript));
+      }
     };
-    recognition.onerror = () => setIsListening(false);
+    recognition.onerror = (e) => {
+      console.error('Speech recognition error:', e);
+      setIsListening(false);
+    };
     recognition.onend = () => setIsListening(false);
     recognitionRef.current = recognition;
     recognition.start();
