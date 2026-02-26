@@ -3,6 +3,7 @@ import { MessageCircle, X, Send, Loader2, Mic, MicOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import ReactMarkdown from 'react-markdown';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 type Msg = { role: 'user' | 'assistant'; content: string };
 
@@ -26,8 +27,10 @@ declare global {
 }
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
+const langToSpeech: Record<string, string> = { es: 'es-ES', ca: 'ca-ES', en: 'en-US' };
 
 const AiChatWidget = () => {
+  const { language } = useLanguage();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState('');
@@ -55,7 +58,7 @@ const AiChatWidget = () => {
       return;
     }
     const recognition = new SpeechRecognition();
-    recognition.lang = 'es-ES';
+    recognition.lang = langToSpeech[language] || 'es-ES';
     recognition.continuous = true;
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
