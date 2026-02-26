@@ -176,7 +176,7 @@ const AiChatWidget = () => {
                     : 'bg-secondary text-foreground'
                 }`}>
                   {m.role === 'assistant' ? (
-                    <div className="prose prose-sm prose-invert max-w-none [&>p]:m-0 [&>ul]:m-0 [&>ol]:m-0 [&>p+p]:mt-1.5">
+                    <div className="max-w-none [&>p]:m-0 [&>p+p]:mt-2 [&_strong]:underline [&>ul]:mt-1 [&>ol]:mt-1">
                       <ReactMarkdown>{m.content}</ReactMarkdown>
                     </div>
                   ) : m.content}
