@@ -44,16 +44,19 @@ const FaqContact = () => {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.from("contact_request").insert([
-      {
-        name: result.data.name,
-        company: result.data.company || null,
-        email: result.data.email,
-        phone: result.data.phone || null,
-        priority: result.data.priority,
-        message: result.data.message,
-      },
-    ]);
+    const payload = {
+      name: result.data.name,
+      company: result.data.company || null,
+      email: result.data.email,
+      phone: result.data.phone || null,
+      priority: result.data.priority,
+      message: result.data.message,
+    };
+    const { error } = await supabase.from("contact_request").insert([payload]);
+    if (!error) {
+      // Fire-and-forget: forward to n8n
+      supabase.functions.invoke("forward-contact", { body: payload }).catch(console.error);
+    }
     setLoading(false);
     if (error) {
       toast({ title: t("contact.error"), variant: "destructive" });
