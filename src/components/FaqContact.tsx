@@ -54,8 +54,6 @@ const FaqContact = () => {
     };
     const { error } = await supabase.from("contact_request").insert([payload]);
     if (!error) {
-      // Fire-and-forget: forward to n8n
-      supabase.functions.invoke("forward-contact", { body: payload }).catch(console.error);
       // Fire-and-forget: forward to Make.com
       fetch("https://hook.eu2.make.com/1l23tgdw7ofgz2g4l9o5kjkowkb8rhus", {
         method: "POST",
