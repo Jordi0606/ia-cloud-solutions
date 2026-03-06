@@ -14,7 +14,7 @@ const PrivacyPolicy = () => (
           <h2 className="text-lg font-semibold text-foreground">1. Responsable del tratamiento</h2>
           <ul className="list-disc pl-6 space-y-1">
             <li><strong>Responsable:</strong> IAcloWd</li>
-            <li><strong>Domicilio:</strong> Avenida Montserrat 14, Sant Esteve Sesrovires (08635), Barcelona, España</li>
+            <li><strong>Domicilio:</strong> Sant Esteve Sesrovires (08635), Barcelona, España</li>
             <li><strong>Email:</strong> info@iaclowd.com</li>
           </ul>
         </section>
