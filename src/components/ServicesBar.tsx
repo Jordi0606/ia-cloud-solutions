@@ -32,6 +32,7 @@ const trainingService = services.find(s => s.key === 'training')!;
 const ServicesBar = () => {
   const { t } = useLanguage();
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [locked, setLocked] = useState<string | null>(null);
 
   const expandedService = expanded ? services.find(s => s.key === expanded) : null;
 
