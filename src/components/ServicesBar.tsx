@@ -80,13 +80,6 @@ const ServicesBar = () => {
         >
           {expandedService && (
             <div className="relative rounded-xl border border-yellow-400/30 bg-card p-6 shadow-lg shadow-yellow-400/5 animate-fade-in">
-              <button
-                onClick={() => setExpanded(null)}
-                className="absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-muted text-foreground/70 transition-colors hover:bg-destructive hover:text-destructive-foreground"
-                aria-label="Cerrar"
-              >
-                <X className="h-4 w-4" />
-              </button>
               <div className="flex flex-col items-center gap-6 md:flex-row md:items-start">
                 <img
                   src={expandedService.img}
