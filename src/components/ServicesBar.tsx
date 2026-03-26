@@ -104,7 +104,7 @@ const ServicesBar = () => {
                   <img
                     src={expandedService.icon}
                     alt=""
-                    className="h-16 w-24 shrink-0 object-cover mix-blend-screen"
+                    className="h-20 w-32 shrink-0 object-contain mix-blend-screen drop-shadow-[0_0_14px_hsl(217,91%,60%,0.6)]"
                   />
                   <div className="text-center sm:text-left">
                     <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
