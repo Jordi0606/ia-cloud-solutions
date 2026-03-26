@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
-import { X } from 'lucide-react';
+
 import iconBots from '@/assets/icon-bots.png';
 import iconAutomation from '@/assets/icon-automation.png';
 import iconBrain from '@/assets/icon-brain.png';
@@ -33,10 +33,6 @@ const ServicesBar = () => {
   const { t } = useLanguage();
   const [expanded, setExpanded] = useState<string | null>(null);
 
-  const toggle = (key: string) => {
-    setExpanded(prev => (prev === key ? null : key));
-  };
-
   const expandedService = expanded ? services.find(s => s.key === expanded) : null;
 
   const renderButton = ({ key, icon }: { key: string; icon: string }) => {
@@ -45,7 +41,7 @@ const ServicesBar = () => {
     return (
       <button
         key={key}
-        onClick={() => toggle(key)}
+        onMouseEnter={() => setExpanded(key)}
         className={`group relative flex flex-col items-center gap-2 rounded-lg border p-4 transition-all duration-300 ${
           isExpanded
             ? 'border-yellow-400 bg-primary/10 scale-105 shadow-lg shadow-yellow-400/10'
@@ -67,7 +63,7 @@ const ServicesBar = () => {
   };
 
   return (
-    <section id="services-bar" className="border-y border-border bg-secondary/30 py-4">
+    <section id="services-bar" className="border-y border-border bg-secondary/30 py-4" onMouseLeave={() => setExpanded(null)}>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6">
           {mainServices.map(renderButton)}
@@ -84,13 +80,6 @@ const ServicesBar = () => {
         >
           {expandedService && (
             <div className="relative rounded-xl border border-yellow-400/30 bg-card p-6 shadow-lg shadow-yellow-400/5 animate-fade-in">
-              <button
-                onClick={() => setExpanded(null)}
-                className="absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-muted text-foreground/70 transition-colors hover:bg-destructive hover:text-destructive-foreground"
-                aria-label="Cerrar"
-              >
-                <X className="h-4 w-4" />
-              </button>
               <div className="flex flex-col items-center gap-6 md:flex-row md:items-start">
                 <img
                   src={expandedService.img}
