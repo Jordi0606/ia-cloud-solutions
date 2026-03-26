@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
-import { X } from 'lucide-react';
+
 import iconBots from '@/assets/icon-bots.png';
 import iconAutomation from '@/assets/icon-automation.png';
 import iconBrain from '@/assets/icon-brain.png';
