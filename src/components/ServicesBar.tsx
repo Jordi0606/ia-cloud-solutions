@@ -86,24 +86,34 @@ const ServicesBar = () => {
             <div className="relative rounded-xl border border-yellow-400/30 bg-card p-6 shadow-lg shadow-yellow-400/5 animate-fade-in">
               <button
                 onClick={() => setExpanded(null)}
-                className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-muted text-foreground/70 transition-colors hover:bg-destructive hover:text-destructive-foreground"
+                className="absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-muted text-foreground/70 transition-colors hover:bg-destructive hover:text-destructive-foreground"
                 aria-label="Cerrar"
               >
                 <X className="h-4 w-4" />
               </button>
-              <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start sm:gap-6">
+              <div className="flex flex-col items-center gap-6 md:flex-row md:items-start">
                 <img
-                  src={expandedService.icon}
-                  alt=""
-                  className="h-16 w-24 shrink-0 object-cover mix-blend-screen"
+                  src={expandedService.img}
+                  alt={t(`detail.${expandedService.key}.title`)}
+                  loading="lazy"
+                  width={768}
+                  height={512}
+                  className="w-full max-w-xs rounded-lg border border-border/30 object-cover shadow-md md:max-w-sm"
                 />
-                <div className="text-center sm:text-left">
-                  <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
-                    {t(`detail.${expandedService.key}.title`)}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {t(`detail.${expandedService.key}.desc`)}
-                  </p>
+                <div className="flex flex-col items-center gap-4 sm:items-start">
+                  <img
+                    src={expandedService.icon}
+                    alt=""
+                    className="h-16 w-24 shrink-0 object-cover mix-blend-screen"
+                  />
+                  <div className="text-center sm:text-left">
+                    <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
+                      {t(`detail.${expandedService.key}.title`)}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {t(`detail.${expandedService.key}.desc`)}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
