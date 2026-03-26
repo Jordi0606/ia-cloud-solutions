@@ -63,7 +63,7 @@ const ServicesBar = () => {
   };
 
   return (
-    <section id="services-bar" className="border-y border-border bg-secondary/30 py-4">
+    <section id="services-bar" className="border-y border-border bg-secondary/30 py-4" onMouseLeave={() => setExpanded(null)}>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6">
           {mainServices.map(renderButton)}
