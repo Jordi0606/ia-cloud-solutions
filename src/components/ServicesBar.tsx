@@ -8,15 +8,22 @@ import iconMonetize from '@/assets/icon-monetize.png';
 import iconIntegral from '@/assets/icon-integral.png';
 import iconChats from '@/assets/icon-chats.png';
 import iconTraining from '@/assets/icon-training.png';
+import imgBots from '@/assets/service-bots.jpg';
+import imgAutomation from '@/assets/service-automation.jpg';
+import imgProblems from '@/assets/service-problems.jpg';
+import imgMonetize from '@/assets/service-monetize.jpg';
+import imgIntegral from '@/assets/service-integral.jpg';
+import imgChats from '@/assets/service-chats.jpg';
+import imgTraining from '@/assets/service-training.jpg';
 
 const services = [
-  { key: 'bots', icon: iconBots },
-  { key: 'automation', icon: iconAutomation },
-  { key: 'problems', icon: iconBrain },
-  { key: 'monetize', icon: iconMonetize },
-  { key: 'integral', icon: iconIntegral },
-  { key: 'chats', icon: iconChats },
-  { key: 'training', icon: iconTraining },
+  { key: 'bots', icon: iconBots, img: imgBots },
+  { key: 'automation', icon: iconAutomation, img: imgAutomation },
+  { key: 'problems', icon: iconBrain, img: imgProblems },
+  { key: 'monetize', icon: iconMonetize, img: imgMonetize },
+  { key: 'integral', icon: iconIntegral, img: imgIntegral },
+  { key: 'chats', icon: iconChats, img: imgChats },
+  { key: 'training', icon: iconTraining, img: imgTraining },
 ];
 
 const mainServices = services.filter(s => s.key !== 'training');
