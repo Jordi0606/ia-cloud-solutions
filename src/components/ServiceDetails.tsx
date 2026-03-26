@@ -29,7 +29,7 @@ const ServiceDetails = () => {
             <Card key={id} id={id} className="group border-border bg-card transition-all hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/10">
               <CardContent className="p-6">
                 <div className="mb-4 mx-auto flex h-20 w-36 items-center justify-center overflow-hidden rounded-lg">
-                  <img src={icon} alt="" className="h-full w-full object-contain mix-blend-screen drop-shadow-[0_0_12px_hsl(217,91%,60%,0.5)] transition-all duration-300 group-hover:drop-shadow-[0_0_18px_hsl(217,91%,60%,0.7)] group-hover:scale-110" />
+                  <img src={icon} alt="" className="h-full w-full object-contain mix-blend-screen transition-all duration-300 group-hover:scale-110" />
                 </div>
                 <h3 className="mb-3 font-display text-lg font-semibold text-foreground">
                   {t(`detail.${key}.title`)}
