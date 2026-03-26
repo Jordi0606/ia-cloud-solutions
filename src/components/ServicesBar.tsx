@@ -37,12 +37,13 @@ const ServicesBar = () => {
   const expandedService = expanded ? services.find(s => s.key === expanded) : null;
 
   const renderButton = ({ key, icon }: { key: string; icon: string }) => {
-    const isExpanded = expanded === key;
+    const isExpanded = (locked || expanded) === key;
 
     return (
       <button
         key={key}
-        onMouseEnter={() => setExpanded(key)}
+        onMouseEnter={() => { if (!locked) setExpanded(key); }}
+        onClick={() => setLocked(prev => prev === key ? null : key)}
         className={`group relative flex flex-col items-center gap-2 rounded-lg border p-4 transition-all duration-300 ${
           isExpanded
             ? 'border-yellow-400 bg-primary/10 scale-105 shadow-lg shadow-yellow-400/10'
