@@ -32,16 +32,19 @@ const trainingService = services.find(s => s.key === 'training')!;
 const ServicesBar = () => {
   const { t } = useLanguage();
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [locked, setLocked] = useState<string | null>(null);
 
-  const expandedService = expanded ? services.find(s => s.key === expanded) : null;
+  const activeKey = locked || expanded;
+  const expandedService = activeKey ? services.find(s => s.key === activeKey) : null;
 
   const renderButton = ({ key, icon }: { key: string; icon: string }) => {
-    const isExpanded = expanded === key;
+    const isExpanded = (locked || expanded) === key;
 
     return (
       <button
         key={key}
-        onMouseEnter={() => setExpanded(key)}
+        onMouseEnter={() => { if (!locked) setExpanded(key); }}
+        onClick={() => setLocked(prev => prev === key ? null : key)}
         className={`group relative flex flex-col items-center gap-2 rounded-lg border p-4 transition-all duration-300 ${
           isExpanded
             ? 'border-yellow-400 bg-primary/10 scale-105 shadow-lg shadow-yellow-400/10'
@@ -63,7 +66,7 @@ const ServicesBar = () => {
   };
 
   return (
-    <section id="services-bar" className="border-y border-border bg-secondary/30 py-4" onMouseLeave={() => setExpanded(null)}>
+    <section id="services-bar" className="border-y border-border bg-secondary/30 py-4" onMouseLeave={() => { if (!locked) setExpanded(null); }}>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6">
           {mainServices.map(renderButton)}
