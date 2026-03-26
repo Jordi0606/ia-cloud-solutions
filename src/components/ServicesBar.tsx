@@ -34,7 +34,8 @@ const ServicesBar = () => {
   const [expanded, setExpanded] = useState<string | null>(null);
   const [locked, setLocked] = useState<string | null>(null);
 
-  const expandedService = expanded ? services.find(s => s.key === expanded) : null;
+  const activeKey = locked || expanded;
+  const expandedService = activeKey ? services.find(s => s.key === activeKey) : null;
 
   const renderButton = ({ key, icon }: { key: string; icon: string }) => {
     const isExpanded = (locked || expanded) === key;
