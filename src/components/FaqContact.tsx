@@ -159,7 +159,7 @@ const FaqContact = () => {
                   className="mt-1 bg-secondary"
                   rows={4}
                   required
-                  placeholder="Propuesta o motivo de la consulta"
+                  placeholder="Propuesta o motivo de la consulta."
                 />
               </div>
               <Button
