@@ -10,7 +10,6 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    // Auth + admin check
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_ANON_KEY") ?? "",
@@ -24,7 +23,6 @@ serve(async (req) => {
       });
     }
 
-    // Check admin role
     const { data: roleData } = await supabaseClient
       .from("user_roles")
       .select("role")
@@ -52,6 +50,7 @@ serve(async (req) => {
 
     const lang = language || "español";
 
+    // Generate the main article
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -86,48 +85,143 @@ Escribe en ${lang}. El slug debe ser en minúsculas, sin acentos, con guiones.`,
     if (!response.ok) {
       if (response.status === 429) {
         return new Response(JSON.stringify({ error: "Demasiadas peticiones. Inténtalo de nuevo en unos segundos." }), {
-          status: 429,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
       if (response.status === 402) {
         return new Response(JSON.stringify({ error: "Créditos de IA agotados." }), {
-          status: 402,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
       const t = await response.text();
       console.error("AI gateway error:", response.status, t);
       return new Response(JSON.stringify({ error: "Error del servicio de IA" }), {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
     const data = await response.json();
     const rawContent = data.choices?.[0]?.message?.content || "";
 
-    // Extract JSON from response (handle markdown code blocks)
     let jsonStr = rawContent;
     const jsonMatch = rawContent.match(/```(?:json)?\s*([\s\S]*?)```/);
     if (jsonMatch) jsonStr = jsonMatch[1].trim();
 
+    let parsed;
     try {
-      const parsed = JSON.parse(jsonStr);
-      return new Response(JSON.stringify(parsed), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      parsed = JSON.parse(jsonStr);
     } catch {
       return new Response(JSON.stringify({ error: "Error al procesar la respuesta de IA" }), {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+
+    // Now generate translations for all 3 languages
+    const languages = [
+      { code: "es", name: "español" },
+      { code: "en", name: "inglés" },
+      { code: "ca", name: "catalán" },
+    ];
+
+    // Save the main post first
+    const { data: insertedPost, error: insertError } = await supabaseClient
+      .from("blog_posts")
+      .insert({
+        title: parsed.title,
+        slug: parsed.slug,
+        content: parsed.content,
+        excerpt: parsed.excerpt || null,
+        author_id: user.id,
+      })
+      .select("id")
+      .single();
+
+    if (insertError) {
+      console.error("Insert post error:", insertError);
+      return new Response(JSON.stringify({ error: insertError.message }), {
+        status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Save original language translation (Spanish by default)
+    const adminClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+    );
+
+    await adminClient.from("blog_post_translations").insert({
+      post_id: insertedPost.id,
+      language: "es",
+      title: parsed.title,
+      excerpt: parsed.excerpt || "",
+      content: parsed.content,
+    });
+
+    // Generate translations for the other languages in parallel
+    const otherLangs = languages.filter(l => l.code !== "es");
+    const translationPromises = otherLangs.map(async (targetLang) => {
+      try {
+        const transResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${LOVABLE_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: "google/gemini-3-flash-preview",
+            messages: [
+              {
+                role: "system",
+                content: `Eres un traductor profesional. Traduce el siguiente artículo de blog al ${targetLang.name}.
+Responde SIEMPRE en formato JSON con esta estructura exacta:
+{
+  "title": "Título traducido",
+  "excerpt": "Resumen traducido",
+  "content": "Contenido traducido en Markdown"
+}
+Mantén el formato Markdown y la estructura del artículo original. No cambies datos técnicos ni nombres propios.`,
+              },
+              {
+                role: "user",
+                content: `Traduce este artículo:\n\nTítulo: ${parsed.title}\n\nResumen: ${parsed.excerpt}\n\nContenido:\n${parsed.content}`,
+              },
+            ],
+          }),
+        });
+
+        if (!transResponse.ok) {
+          console.error(`Translation to ${targetLang.code} failed:`, transResponse.status);
+          return;
+        }
+
+        const transData = await transResponse.json();
+        const transRaw = transData.choices?.[0]?.message?.content || "";
+        let transJson = transRaw;
+        const transMatch = transRaw.match(/```(?:json)?\s*([\s\S]*?)```/);
+        if (transMatch) transJson = transMatch[1].trim();
+
+        const transParsed = JSON.parse(transJson);
+        await adminClient.from("blog_post_translations").insert({
+          post_id: insertedPost.id,
+          language: targetLang.code,
+          title: transParsed.title,
+          excerpt: transParsed.excerpt || "",
+          content: transParsed.content,
+        });
+      } catch (e) {
+        console.error(`Translation error for ${targetLang.code}:`, e);
+      }
+    });
+
+    await Promise.all(translationPromises);
+
+    return new Response(JSON.stringify({ ...parsed, id: insertedPost.id, saved: true }), {
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   } catch (e) {
     console.error("generate-blog error:", e);
     return new Response(JSON.stringify({ error: "Servicio temporalmente no disponible" }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
+      status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
 });

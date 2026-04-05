@@ -14,6 +14,44 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_post_translations: {
+        Row: {
+          content: string
+          created_at: string
+          excerpt: string | null
+          id: string
+          language: string
+          post_id: string
+          title: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          language: string
+          post_id: string
+          title: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          language?: string
+          post_id?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_post_translations_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       blog_posts: {
         Row: {
           author_id: string
