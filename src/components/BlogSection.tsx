@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { useBlogTranslations } from '@/hooks/useBlogTranslation';
 import { ArrowRight, Newspaper, Calendar } from 'lucide-react';
 import blogPlaceholder1 from '@/assets/blog-placeholder-1.jpg';
 import blogPlaceholder2 from '@/assets/blog-placeholder-2.jpg';
@@ -34,9 +35,10 @@ const BlogSection = () => {
       });
   }, []);
 
+  const translations = useBlogTranslations(posts.map(p => p.id));
+
   return (
     <section id="blog-section" className="relative overflow-hidden border-t border-border py-20">
-      {/* Background glow */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-primary/5" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
@@ -61,43 +63,46 @@ const BlogSection = () => {
 
         {posts.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((p, i) => (
-              <Link key={p.id} to={`/blog/${p.slug}`}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1">
-                  {/* Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={p.cover_image_url || placeholders[i % placeholders.length]}
-                      alt={p.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
-                    <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-card/80 px-3 py-1 backdrop-blur-sm">
-                      <Calendar className="h-3 w-3 text-primary" />
-                      <span className="text-xs text-muted-foreground">
-                        {new Date(p.created_at).toLocaleDateString()}
+            {posts.map((p, i) => {
+              const tr = translations[p.id];
+              const title = tr?.title || p.title;
+              const excerpt = tr?.excerpt ?? p.excerpt;
+
+              return (
+                <Link key={p.id} to={`/blog/${p.slug}`}>
+                  <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1">
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={p.cover_image_url || placeholders[i % placeholders.length]}
+                        alt={title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                      <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-card/80 px-3 py-1 backdrop-blur-sm">
+                        <Calendar className="h-3 w-3 text-primary" />
+                        <span className="text-xs text-muted-foreground">
+                          {new Date(p.created_at).toLocaleDateString()}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex flex-1 flex-col p-5">
+                      <h3 className="mb-3 font-display text-lg font-semibold leading-tight text-foreground transition group-hover:text-primary">
+                        {title}
+                      </h3>
+                      {excerpt && (
+                        <p className="flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                          {excerpt}
+                        </p>
+                      )}
+                      <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary transition-all group-hover:gap-2.5">
+                        {t('blog.section.readMore')}
+                        <ArrowRight className="h-3.5 w-3.5" />
                       </span>
                     </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex flex-1 flex-col p-5">
-                    <h3 className="mb-3 font-display text-lg font-semibold leading-tight text-foreground transition group-hover:text-primary">
-                      {p.title}
-                    </h3>
-                    {p.excerpt && (
-                      <p className="flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
-                        {p.excerpt}
-                      </p>
-                    )}
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary transition-all group-hover:gap-2.5">
-                      {t('blog.section.readMore')}
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
-                </article>
-              </Link>
-            ))}
+                  </article>
+                </Link>
+              );
+            })}
           </div>
         ) : (
           <div className="rounded-xl border border-dashed border-border bg-card/50 p-12 text-center">
