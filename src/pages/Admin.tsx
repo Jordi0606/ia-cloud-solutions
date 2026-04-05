@@ -121,11 +121,13 @@ const Admin = () => {
     }
     setAiLoading(true);
     try {
+      const { data: { session } } = await supabase.auth.getSession();
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-blog`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          Authorization: `Bearer ${session?.access_token || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
         },
         body: JSON.stringify({ topic: aiTopic }),
       });
@@ -135,14 +137,21 @@ const Admin = () => {
         return;
       }
       const data = await response.json();
-      setPostForm({
-        title: data.title || '',
-        slug: data.slug || '',
-        content: data.content || '',
-        excerpt: data.excerpt || '',
-      });
-      setAiTopic('');
-      toast({ title: '¡Borrador generado con IA!' });
+      if (data.saved) {
+        // Post was saved directly by the edge function with translations
+        setAiTopic('');
+        toast({ title: '¡Artículo generado y guardado con traducciones!' });
+        fetchPosts();
+      } else {
+        setPostForm({
+          title: data.title || '',
+          slug: data.slug || '',
+          content: data.content || '',
+          excerpt: data.excerpt || '',
+        });
+        setAiTopic('');
+        toast({ title: '¡Borrador generado con IA!' });
+      }
     } catch (e) {
       toast({ title: 'Error de conexión', variant: 'destructive' });
     } finally {
