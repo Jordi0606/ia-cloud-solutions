@@ -32,6 +32,18 @@ const Header = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-6 md:flex">
+          {/* Quiénes somos */}
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
+              {t('nav.about')} <ChevronDown className="h-3 w-3" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-popover border-border">
+              <DropdownMenuItem asChild><a href="/quienes-somos">{t('about.mission.title')}</a></DropdownMenuItem>
+              <DropdownMenuItem asChild><a href="/quienes-somos">{t('about.what.title')}</a></DropdownMenuItem>
+              <DropdownMenuItem asChild><a href="/quienes-somos">{t('about.team.title')}</a></DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           {/* Servicios */}
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
@@ -112,6 +124,7 @@ const Header = () => {
       {mobileOpen && (
         <div className="border-t border-border bg-background px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3">
+            <a href="/quienes-somos" onClick={() => setMobileOpen(false)} className="text-left text-sm text-foreground/80">{t('nav.about')}</a>
             <button onClick={() => scrollTo('services')} className="text-left text-sm text-foreground/80">{t('nav.services')}</button>
             <button onClick={() => scrollTo('services')} className="text-left text-sm text-foreground/80">{t('nav.consulting')}</button>
             <button onClick={() => scrollTo('contact')} className="text-left text-sm text-foreground/80">{t('nav.contact')}</button>
