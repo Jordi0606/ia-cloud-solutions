@@ -1,4 +1,4 @@
-import { FaWhatsapp } from 'react-icons/fa';
+import { FaTelegramPlane } from 'react-icons/fa';
 import { useLanguage } from '@/i18n/LanguageContext';
 import logoInstagram from '@/assets/logo-instagram.jpg';
 
@@ -6,12 +6,12 @@ const socials = [
   {
     key: 'instagram',
     renderIcon: (cls: string) => <img src={logoInstagram} alt="Instagram" className={`${cls} rounded-lg`} />,
-    href: 'https://www.instagram.com/', // TODO: replace with actual URL
+    href: 'https://www.instagram.com/',
   },
   {
-    key: 'whatsapp',
-    renderIcon: (cls: string) => <FaWhatsapp className={cls} style={{ color: '#25D366' }} />,
-    href: 'https://wa.me/34613825828',
+    key: 'telegram',
+    renderIcon: (cls: string) => <FaTelegramPlane className={cls} style={{ color: '#26A5E4' }} />,
+    href: 'https://t.me/Reguant_Bot',
   },
 ];
 
