@@ -103,7 +103,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'about.what.title': '¿Qué Hacemos?',
     'about.what.desc': 'Desarrollamos chatbots inteligentes, automatizamos procesos empresariales, implementamos análisis predictivo, creamos estrategias de monetización digital y ofrecemos formación especializada en IA. Desde la consultoría inicial hasta la implementación completa, acompañamos a nuestros clientes en cada paso de su transformación digital.',
     'about.team.title': 'Nuestro Equipo',
-    'about.team.desc': 'Contamos con un equipo multidisciplinar de expertos en inteligencia artificial, desarrollo de software, consultoría empresarial y transformación digital. Nuestra pasión por la innovación y nuestro compromiso con la excelencia nos impulsan a ofrecer las mejores soluciones tecnológicas del mercado.',
+    'about.team.desc': 'Contamos con un equipo multidisciplinar de expertos en inteligencia artificial, consultoría empresarial y transformación digital. Nuestra pasión por la innovación y nuestro compromiso con la excelencia nos impulsan a ofrecer las mejores soluciones tecnológicas del mercado.',
     'about.values.title': 'Nuestros Valores',
     'about.values.v1.title': 'Innovación',
     'about.values.v1.desc': 'Investigamos y aplicamos las últimas tecnologías de IA para ofrecer soluciones de vanguardia que marquen la diferencia.',
