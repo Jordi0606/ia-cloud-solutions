@@ -113,7 +113,7 @@ const Header = () => {
             </div>
             <DropdownMenuContent className="bg-popover border-border" onMouseEnter={contact.enter} onMouseLeave={contact.leave}>
               <DropdownMenuItem onClick={() => scrollTo('contact')}>{t('contact.form')}</DropdownMenuItem>
-              <DropdownMenuItem asChild><a href="https://wa.me/34613825828" target="_blank" rel="noopener noreferrer">{t('contact.whatsapp')}</a></DropdownMenuItem>
+              <DropdownMenuItem asChild><a href="https://t.me/Reguant_Bot" target="_blank" rel="noopener noreferrer">{t('contact.whatsapp')}</a></DropdownMenuItem>
               <DropdownMenuItem>{t('contact.email')}</DropdownMenuItem>
               <DropdownMenuItem asChild><a href="https://calendar.app.google/WoH8WjWrXGG9CWuKA" target="_blank" rel="noopener noreferrer">{t('contact.meeting')}</a></DropdownMenuItem>
             </DropdownMenuContent>
