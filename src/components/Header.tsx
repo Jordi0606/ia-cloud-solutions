@@ -55,6 +55,11 @@ const Header = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-6 md:flex">
+          {/* Home */}
+          <a href="/" className="text-sm font-medium text-foreground/80 transition hover:text-primary">
+            Home
+          </a>
+
           {/* Quiénes somos */}
           <DropdownMenu open={about.open} onOpenChange={about.setOpen}>
             <div onMouseEnter={about.enter} onMouseLeave={about.leave}>
