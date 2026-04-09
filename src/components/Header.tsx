@@ -55,6 +55,11 @@ const Header = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-6 md:flex">
+          {/* Home */}
+          <a href="/" className="text-sm font-medium text-foreground/80 transition hover:text-primary">
+            Home
+          </a>
+
           {/* Quiénes somos */}
           <DropdownMenu open={about.open} onOpenChange={about.setOpen}>
             <div onMouseEnter={about.enter} onMouseLeave={about.leave}>
@@ -157,6 +162,7 @@ const Header = () => {
       {mobileOpen && (
         <div className="border-t border-border bg-background px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3">
+            <a href="/" onClick={() => setMobileOpen(false)} className="text-left text-sm text-foreground/80">Home</a>
             <a href="/quienes-somos" onClick={() => setMobileOpen(false)} className="text-left text-sm text-foreground/80">{t('nav.about')}</a>
             <button onClick={() => scrollTo('services')} className="text-left text-sm text-foreground/80">{t('nav.services')}</button>
             <button onClick={() => scrollTo('services')} className="text-left text-sm text-foreground/80">{t('nav.consulting')}</button>
