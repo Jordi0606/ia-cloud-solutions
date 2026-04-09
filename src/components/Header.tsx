@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { Language } from '@/i18n/translations';
 import { Search, ChevronDown, Menu, X } from 'lucide-react';
@@ -12,10 +12,33 @@ import { Input } from '@/components/ui/input';
 
 const langLabels: Record<Language, string> = { ca: 'Català', es: 'Castellano', en: 'English' };
 
+/** Hook: open on hover, close when mouse leaves both trigger + content */
+function useHoverMenu(delay = 150) {
+  const [open, setOpen] = useState(false);
+  const timeout = useRef<ReturnType<typeof setTimeout>>();
+
+  const enter = useCallback(() => {
+    clearTimeout(timeout.current);
+    setOpen(true);
+  }, []);
+
+  const leave = useCallback(() => {
+    timeout.current = setTimeout(() => setOpen(false), delay);
+  }, [delay]);
+
+  return { open, setOpen, enter, leave };
+}
+
 const Header = () => {
   const { t, language, setLanguage } = useLanguage();
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const about = useHoverMenu();
+  const services = useHoverMenu();
+  const consulting = useHoverMenu();
+  const contact = useHoverMenu();
+  const lang = useHoverMenu();
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -33,11 +56,13 @@ const Header = () => {
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-6 md:flex">
           {/* Quiénes somos */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
-              {t('nav.about')} <ChevronDown className="h-3 w-3" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-popover border-border">
+          <DropdownMenu open={about.open} onOpenChange={about.setOpen}>
+            <div onMouseEnter={about.enter} onMouseLeave={about.leave}>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
+                {t('nav.about')} <ChevronDown className="h-3 w-3" />
+              </DropdownMenuTrigger>
+            </div>
+            <DropdownMenuContent className="bg-popover border-border" onMouseEnter={about.enter} onMouseLeave={about.leave}>
               <DropdownMenuItem asChild><a href="/quienes-somos">{t('about.mission.title')}</a></DropdownMenuItem>
               <DropdownMenuItem asChild><a href="/quienes-somos">{t('about.what.title')}</a></DropdownMenuItem>
               <DropdownMenuItem asChild><a href="/quienes-somos">{t('about.team.title')}</a></DropdownMenuItem>
@@ -45,11 +70,13 @@ const Header = () => {
           </DropdownMenu>
 
           {/* Servicios */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
-              {t('nav.services')} <ChevronDown className="h-3 w-3" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-popover border-border">
+          <DropdownMenu open={services.open} onOpenChange={services.setOpen}>
+            <div onMouseEnter={services.enter} onMouseLeave={services.leave}>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
+                {t('nav.services')} <ChevronDown className="h-3 w-3" />
+              </DropdownMenuTrigger>
+            </div>
+            <DropdownMenuContent className="bg-popover border-border" onMouseEnter={services.enter} onMouseLeave={services.leave}>
               <DropdownMenuItem onClick={() => scrollTo('services')}>{t('services.bots')}</DropdownMenuItem>
               <DropdownMenuItem onClick={() => scrollTo('services')}>{t('services.automation')}</DropdownMenuItem>
               <DropdownMenuItem onClick={() => scrollTo('services')}>{t('services.integration')}</DropdownMenuItem>
@@ -58,11 +85,13 @@ const Header = () => {
           </DropdownMenu>
 
           {/* Consultoría */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
-              {t('nav.consulting')} <ChevronDown className="h-3 w-3" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-popover border-border">
+          <DropdownMenu open={consulting.open} onOpenChange={consulting.setOpen}>
+            <div onMouseEnter={consulting.enter} onMouseLeave={consulting.leave}>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
+                {t('nav.consulting')} <ChevronDown className="h-3 w-3" />
+              </DropdownMenuTrigger>
+            </div>
+            <DropdownMenuContent className="bg-popover border-border" onMouseEnter={consulting.enter} onMouseLeave={consulting.leave}>
               <DropdownMenuItem>{t('consulting.digital')}</DropdownMenuItem>
               <DropdownMenuItem>{t('consulting.strategy')}</DropdownMenuItem>
               <DropdownMenuItem>{t('consulting.audit')}</DropdownMenuItem>
@@ -71,11 +100,13 @@ const Header = () => {
           </DropdownMenu>
 
           {/* Contactar */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
-              {t('nav.contact')} <ChevronDown className="h-3 w-3" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-popover border-border">
+          <DropdownMenu open={contact.open} onOpenChange={contact.setOpen}>
+            <div onMouseEnter={contact.enter} onMouseLeave={contact.leave}>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
+                {t('nav.contact')} <ChevronDown className="h-3 w-3" />
+              </DropdownMenuTrigger>
+            </div>
+            <DropdownMenuContent className="bg-popover border-border" onMouseEnter={contact.enter} onMouseLeave={contact.leave}>
               <DropdownMenuItem onClick={() => scrollTo('contact')}>{t('contact.form')}</DropdownMenuItem>
               <DropdownMenuItem asChild><a href="https://wa.me/34613825828" target="_blank" rel="noopener noreferrer">{t('contact.whatsapp')}</a></DropdownMenuItem>
               <DropdownMenuItem>{t('contact.email')}</DropdownMenuItem>
@@ -100,11 +131,13 @@ const Header = () => {
           </div>
 
           {/* Language */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 rounded border border-border px-2 py-1 text-xs font-medium text-foreground/80 transition hover:border-primary">
-              {langLabels[language]} <ChevronDown className="h-3 w-3" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-popover border-border">
+          <DropdownMenu open={lang.open} onOpenChange={lang.setOpen}>
+            <div onMouseEnter={lang.enter} onMouseLeave={lang.leave}>
+              <DropdownMenuTrigger className="flex items-center gap-1 rounded border border-border px-2 py-1 text-xs font-medium text-foreground/80 transition hover:border-primary">
+                {langLabels[language]} <ChevronDown className="h-3 w-3" />
+              </DropdownMenuTrigger>
+            </div>
+            <DropdownMenuContent className="bg-popover border-border" onMouseEnter={lang.enter} onMouseLeave={lang.leave}>
               {(Object.entries(langLabels) as [Language, string][]).map(([code, label]) => (
                 <DropdownMenuItem key={code} onClick={() => setLanguage(code)}>
                   {label}
