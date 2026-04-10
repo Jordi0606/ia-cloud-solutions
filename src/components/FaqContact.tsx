@@ -3,7 +3,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
 import { Mail, Phone } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaTelegramPlane } from "react-icons/fa";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
@@ -181,13 +181,13 @@ const FaqContact = () => {
             info@iaclowd.com
           </a>
           <a
-            href="https://wa.me/34613825828"
+            href="https://t.me/Reguant_Bot"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 text-lg font-semibold text-foreground transition hover:text-green-400"
+            className="flex items-center gap-3 text-lg font-semibold text-foreground transition hover:text-[#26A5E4]"
           >
-            <FaWhatsapp className="h-7 w-7 text-green-500" />
-            +34 613 82 58 28
+            <FaTelegramPlane className="h-7 w-7 text-[#26A5E4]" />
+            @Reguant_Bot
           </a>
         </div>
       </div>
