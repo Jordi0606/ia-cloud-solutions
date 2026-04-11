@@ -186,7 +186,7 @@ const FaqContact = () => {
             rel="noopener noreferrer"
             className="flex items-center gap-3 text-lg font-semibold text-foreground transition hover:text-primary"
           >
-            <img src={webIcon} alt="Web" className="h-8 w-8" loading="lazy" width={32} height={32} />
+            <img src={webIcon} alt="Web" className="h-12 w-12" loading="lazy" width={48} height={48} />
             www.iaclowd.com
           </a>
         </div>
