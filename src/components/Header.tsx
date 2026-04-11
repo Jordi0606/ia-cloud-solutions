@@ -61,7 +61,7 @@ const Header = () => {
           </a>
 
           {/* Quiénes somos */}
-          <DropdownMenu open={about.open} onOpenChange={about.setOpen}>
+          <DropdownMenu open={about.open} onOpenChange={about.setOpen} modal={false}>
             <div onMouseEnter={about.enter} onMouseLeave={about.leave}>
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
                 {t('nav.about')} <ChevronDown className="h-3 w-3" />
@@ -75,7 +75,7 @@ const Header = () => {
           </DropdownMenu>
 
           {/* Servicios */}
-          <DropdownMenu open={services.open} onOpenChange={services.setOpen}>
+          <DropdownMenu open={services.open} onOpenChange={services.setOpen} modal={false}>
             <div onMouseEnter={services.enter} onMouseLeave={services.leave}>
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
                 {t('nav.services')} <ChevronDown className="h-3 w-3" />
@@ -90,7 +90,7 @@ const Header = () => {
           </DropdownMenu>
 
           {/* Consultoría */}
-          <DropdownMenu open={consulting.open} onOpenChange={consulting.setOpen}>
+          <DropdownMenu open={consulting.open} onOpenChange={consulting.setOpen} modal={false}>
             <div onMouseEnter={consulting.enter} onMouseLeave={consulting.leave}>
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
                 {t('nav.consulting')} <ChevronDown className="h-3 w-3" />
@@ -105,7 +105,7 @@ const Header = () => {
           </DropdownMenu>
 
           {/* Contactar */}
-          <DropdownMenu open={contact.open} onOpenChange={contact.setOpen}>
+          <DropdownMenu open={contact.open} onOpenChange={contact.setOpen} modal={false}>
             <div onMouseEnter={contact.enter} onMouseLeave={contact.leave}>
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition hover:text-primary">
                 {t('nav.contact')} <ChevronDown className="h-3 w-3" />
@@ -136,7 +136,7 @@ const Header = () => {
           </div>
 
           {/* Language */}
-          <DropdownMenu open={lang.open} onOpenChange={lang.setOpen}>
+          <DropdownMenu open={lang.open} onOpenChange={lang.setOpen} modal={false}>
             <div onMouseEnter={lang.enter} onMouseLeave={lang.leave}>
               <DropdownMenuTrigger className="flex items-center gap-1 rounded border border-border px-2 py-1 text-xs font-medium text-foreground/80 transition hover:border-primary">
                 {langLabels[language]} <ChevronDown className="h-3 w-3" />
