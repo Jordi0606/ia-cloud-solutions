@@ -181,13 +181,13 @@ const FaqContact = () => {
             info@iaclowd.com
           </a>
           <a
-            href="https://t.me/Reguant_Bot"
+            href="https://www.iaclowd.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 text-lg font-semibold text-foreground transition hover:text-[#26A5E4]"
+            className="flex items-center gap-3 text-lg font-semibold text-foreground transition hover:text-primary"
           >
-            <FaTelegramPlane className="h-7 w-7 text-[#26A5E4]" />
-            @Reguant_Bot
+            <img src={webIcon} alt="Web" className="h-7 w-7" loading="lazy" width={28} height={28} />
+            www.iaclowd.com
           </a>
         </div>
       </div>
