@@ -184,9 +184,12 @@ const FaqContact = () => {
             href="https://www.iaclowd.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 text-lg font-semibold text-foreground transition hover:text-primary"
+            className="group flex items-center gap-3 text-lg font-semibold text-foreground transition hover:text-primary"
           >
-            <img src={webIcon} alt="Web" className="h-12 w-12" loading="lazy" width={48} height={48} />
+            <span className="relative flex items-center justify-center">
+              <span className="absolute inset-0 rounded-full bg-primary/20 blur-md group-hover:bg-primary/40 transition-all" />
+              <img src={webIcon} alt="Web" className="relative h-14 w-14 drop-shadow-[0_0_8px_hsl(var(--primary)/0.6)] group-hover:drop-shadow-[0_0_14px_hsl(var(--primary)/0.8)] transition-all" loading="lazy" width={56} height={56} />
+            </span>
             www.iaclowd.com
           </a>
         </div>
