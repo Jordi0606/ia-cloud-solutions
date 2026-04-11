@@ -191,7 +191,7 @@ const FaqContact = () => {
           >
             <span className="relative flex items-center justify-center">
               <span className="absolute inset-0 rounded-full bg-primary/20 blur-md group-hover:bg-primary/40 transition-all" />
-              <img src={webIcon} alt="Web" className="relative h-14 w-14 drop-shadow-[0_0_8px_hsl(var(--primary)/0.6)] group-hover:drop-shadow-[0_0_14px_hsl(var(--primary)/0.8)] transition-all" loading="lazy" width={56} height={56} />
+              <img src={webIcon} alt="Web" className="relative h-20 w-20 drop-shadow-[0_0_8px_hsl(var(--primary)/0.6)] group-hover:drop-shadow-[0_0_14px_hsl(var(--primary)/0.8)] transition-all" loading="lazy" width={80} height={80} />
             </span>
             www.iaclowd.com
           </a>
