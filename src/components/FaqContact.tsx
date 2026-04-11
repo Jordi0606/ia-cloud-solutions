@@ -175,9 +175,12 @@ const FaqContact = () => {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
           <a
             href="mailto:info@iaclowd.com"
-            className="flex items-center gap-3 text-lg font-semibold text-foreground transition hover:text-primary"
+            className="group flex items-center gap-3 text-lg font-semibold text-foreground transition hover:text-primary"
           >
-            <Mail className="h-7 w-7 text-yellow-400" />
+            <span className="relative flex items-center justify-center">
+              <span className="absolute inset-0 rounded-full bg-yellow-400/20 blur-md group-hover:bg-yellow-400/40 transition-all" />
+              <Mail className="relative h-14 w-14 text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)] group-hover:drop-shadow-[0_0_14px_rgba(250,204,21,0.8)] transition-all" />
+            </span>
             info@iaclowd.com
           </a>
           <a
