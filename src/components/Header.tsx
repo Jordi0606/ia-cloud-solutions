@@ -196,7 +196,7 @@ const Header = () => {
                   onClick={closeDesktopMenus}
                   className={desktopItemClass}
                 >
-                  {t('contact.whatsapp')}
+                  {t('contact.telegram')}
                 </a>
                 <button type="button" onClick={closeDesktopMenus} className={desktopItemClass}>
                   {t('contact.email')}
