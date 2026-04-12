@@ -19,7 +19,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'consulting.training': 'Formación',
     // Contact submenu
     'contact.form': 'Formulario rápido',
-    'contact.whatsapp': 'WhatsApp',
+    'contact.telegram': 'Telegram',
     'contact.email': 'Email',
     'contact.meeting': 'Agendar reunión',
     // Hero
@@ -130,7 +130,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'consulting.audit': 'Auditoria Tecnològica',
     'consulting.training': 'Formació',
     'contact.form': 'Formulari ràpid',
-    'contact.whatsapp': 'WhatsApp',
+    'contact.telegram': 'Telegram',
     'contact.email': 'Email',
     'contact.meeting': 'Agendar reunió',
     'hero.title': "Solucions d'IA per al teu negoci",
@@ -231,7 +231,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'consulting.audit': 'Technology Audit',
     'consulting.training': 'Training',
     'contact.form': 'Quick Form',
-    'contact.whatsapp': 'WhatsApp',
+    'contact.telegram': 'Telegram',
     'contact.email': 'Email',
     'contact.meeting': 'Schedule Meeting',
     'hero.title': 'AI Solutions for Your Business',
