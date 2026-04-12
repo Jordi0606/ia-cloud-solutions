@@ -6,8 +6,11 @@ import BlogSection from '@/components/BlogSection';
 import SocialConnect from '@/components/SocialConnect';
 import FaqContact from '@/components/FaqContact';
 import Footer from '@/components/Footer';
+import { useHashScroll } from '@/hooks/useHashScroll';
 
 const Index = () => {
+  useHashScroll();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -18,7 +21,6 @@ const Index = () => {
         <BlogSection />
         <SocialConnect />
         <FaqContact />
-        
       </main>
       <Footer />
     </div>
