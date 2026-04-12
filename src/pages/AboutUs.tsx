@@ -4,9 +4,11 @@ import { useLanguage } from '@/i18n/LanguageContext';
 import aboutTeam from '@/assets/about-team.jpg';
 import aboutInnovation from '@/assets/about-innovation.jpg';
 import aboutMission from '@/assets/about-mission.jpg';
+import { useHashScroll } from '@/hooks/useHashScroll';
 
 const AboutUs = () => {
   const { t } = useLanguage();
+  useHashScroll();
 
   return (
     <div className="min-h-screen bg-background">
@@ -23,7 +25,7 @@ const AboutUs = () => {
         </section>
 
         {/* Misión */}
-        <section className="container mx-auto px-4 py-12">
+        <section id="about-mission" className="container mx-auto px-4 py-12">
           <div className="flex flex-col items-center gap-8 md:flex-row">
             <img src={aboutMission} alt={t('about.mission.title')} loading="lazy" width={768} height={512} className="w-full max-w-md rounded-xl border border-border/30 object-cover shadow-lg" />
             <div className="flex-1">
@@ -34,7 +36,7 @@ const AboutUs = () => {
         </section>
 
         {/* Qué hacemos */}
-        <section className="border-y border-border bg-secondary/20 py-12">
+        <section id="about-what" className="border-y border-border bg-secondary/20 py-12">
           <div className="container mx-auto px-4">
             <div className="flex flex-col-reverse items-center gap-8 md:flex-row">
               <div className="flex-1">
@@ -47,7 +49,7 @@ const AboutUs = () => {
         </section>
 
         {/* Equipo */}
-        <section className="container mx-auto px-4 py-12">
+        <section id="about-team" className="container mx-auto px-4 py-12">
           <div className="flex flex-col items-center gap-8 md:flex-row">
             <img src={aboutTeam} alt={t('about.team.title')} loading="lazy" width={768} height={512} className="w-full max-w-md rounded-xl border border-border/30 object-cover shadow-lg" />
             <div className="flex-1">
