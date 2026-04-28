@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/i18n/LanguageContext';
-import aboutTeam from '@/assets/about-team.jpg';
+import jordiCeo from '@/assets/jordi-reguant-ceo.jpg';
 import aboutInnovation from '@/assets/about-innovation.jpg';
 import aboutMission from '@/assets/about-mission.jpg';
 import { useHashScroll } from '@/hooks/useHashScroll';
@@ -51,7 +51,24 @@ const AboutUs = () => {
         {/* Equipo */}
         <section id="about-team" className="container mx-auto px-4 py-12">
           <div className="flex flex-col items-center gap-8 md:flex-row">
-            <img src={aboutTeam} alt={t('about.team.title')} loading="lazy" width={768} height={512} className="w-full max-w-md rounded-xl border border-border/30 object-cover shadow-lg" />
+            <div className="relative w-full max-w-md">
+              <img
+                src={jordiCeo}
+                alt={`${t('about.team.ceo.name')} - ${t('about.team.ceo.role')}`}
+                loading="lazy"
+                width={896}
+                height={1200}
+                className="w-full rounded-xl border border-primary/30 object-cover shadow-[0_0_40px_hsl(var(--primary)/0.25)]"
+              />
+              <div className="absolute inset-x-0 bottom-0 rounded-b-xl bg-gradient-to-t from-background/95 via-background/70 to-transparent p-4 text-center">
+                <p className="font-display text-lg font-semibold text-foreground">
+                  {t('about.team.ceo.name')}
+                </p>
+                <p className="text-sm font-medium text-primary">
+                  {t('about.team.ceo.role')}
+                </p>
+              </div>
+            </div>
             <div className="flex-1">
               <h2 className="mb-4 font-display text-2xl font-semibold text-foreground">{t('about.team.title')}</h2>
               <p className="text-muted-foreground leading-relaxed">{t('about.team.desc')}</p>
