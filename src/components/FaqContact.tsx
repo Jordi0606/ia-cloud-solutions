@@ -32,7 +32,7 @@ const FaqContact = () => {
     company: "",
     email: "",
     phone: "",
-    priority: undefined as "alta" | "media" | "baja" | undefined,
+    priority: "alta" as "alta" | "media" | "baja",
     message: "",
   });
 
@@ -68,7 +68,7 @@ const FaqContact = () => {
     }).catch((err) => console.error("Make.com webhook error (ignored):", err));
     setLoading(false);
     toast({ title: t("contact.success") });
-    setForm({ name: "", company: "", email: "", phone: "", priority: undefined, message: "" });
+    setForm({ name: "", company: "", email: "", phone: "", priority: "alta", message: "" });
   };
 
   return (
