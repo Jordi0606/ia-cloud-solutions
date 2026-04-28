@@ -53,21 +53,22 @@ const FaqContact = () => {
       message: result.data.message,
     };
     const { error } = await supabase.from("contact_request").insert([payload]);
-    if (!error) {
-      // Fire-and-forget: forward to Make.com
-      fetch("https://hook.eu2.make.com/1l23tgdw7ofgz2g4l9o5kjkowkb8rhus", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      }).catch(console.error);
-    }
-    setLoading(false);
     if (error) {
-      toast({ title: t("contact.error"), variant: "destructive" });
-    } else {
-      toast({ title: t("contact.success") });
-      setForm({ name: "", company: "", email: "", phone: "", priority: undefined, message: "" });
+      console.error("contact_request insert error:", error);
+      setLoading(false);
+      toast({ title: t("contact.error"), description: error.message, variant: "destructive" });
+      return;
     }
+    // Fire-and-forget: forward to Make.com (no afecta al resultado para el usuario)
+    fetch("https://hook.eu2.make.com/1l23tgdw7ofgz2g4l9o5kjkowkb8rhus", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    }).catch((err) => console.error("Make.com webhook error (ignored):", err));
+    setLoading(false);
+    toast({ title: t("contact.success") });
+    setForm({ name: "", company: "", email: "", phone: "", priority: undefined, message: "" });
   };
 
   return (
