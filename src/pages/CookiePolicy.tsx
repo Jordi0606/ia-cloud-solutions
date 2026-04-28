@@ -61,7 +61,12 @@ const CookiePolicy = () => (
           <p>IAcloWd se reserva el derecho de modificar esta Política de Cookies en cualquier momento para adaptarla a novedades legislativas o cambios en el sitio web.</p>
         </section>
 
-        <p className="text-xs text-muted-foreground/60 pt-4">Última actualización: Febrero 2026</p>
+        <section>
+          <h2 className="text-lg font-semibold text-foreground">7. Normativa aplicable</h2>
+          <p>Esta política se rige por el artículo 22.2 de la Ley 34/2002 (LSSI-CE), el Reglamento (UE) 2016/679 (RGPD), la Ley Orgánica 3/2018 (LOPDGDD) y la Guía sobre el uso de las cookies de la Agencia Española de Protección de Datos (AEPD).</p>
+        </section>
+
+        <p className="text-xs text-muted-foreground/60 pt-4">Última actualización: Abril 2026</p>
       </div>
     </div>
   </div>
