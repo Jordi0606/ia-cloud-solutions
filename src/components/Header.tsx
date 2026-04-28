@@ -109,7 +109,7 @@ const Header = () => {
             onClick={() => navigateTo('/')}
             className="text-sm font-medium text-foreground/80 transition hover:text-primary"
           >
-            Home
+            {t('nav.home')}
           </button>
 
           <div className="relative" onMouseEnter={() => openDesktopMenu('about')} onMouseLeave={scheduleMenuClose}>
@@ -288,7 +288,7 @@ const Header = () => {
       {mobileOpen && (
         <div className="border-t border-border bg-background px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3">
-            <button type="button" onClick={() => navigateTo('/')} className="text-left text-sm text-foreground/80">Home</button>
+            <button type="button" onClick={() => navigateTo('/')} className="text-left text-sm text-foreground/80">{t('nav.home')}</button>
             <button type="button" onClick={() => navigateTo('/quienes-somos')} className="text-left text-sm text-foreground/80">{t('nav.about')}</button>
             <button type="button" onClick={() => navigateTo('/', 'services')} className="text-left text-sm text-foreground/80">{t('nav.services')}</button>
             <button type="button" onClick={() => navigateTo('/', 'detail-training')} className="text-left text-sm text-foreground/80">{t('nav.consulting')}</button>

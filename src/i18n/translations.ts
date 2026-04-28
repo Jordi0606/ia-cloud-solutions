@@ -4,6 +4,7 @@ export const translations: Record<Language, Record<string, string>> = {
   es: {
     // Header
     'nav.services': 'Servicios',
+    'nav.home': 'Inicio',
     'nav.consulting': 'Consultoría',
     'nav.contact': 'Contactar',
     'nav.search': 'Buscar...',
@@ -118,6 +119,7 @@ export const translations: Record<Language, Record<string, string>> = {
   },
   ca: {
     'nav.services': 'Serveis',
+    'nav.home': 'Inici',
     'nav.consulting': 'Consultoria',
     'nav.contact': 'Contactar',
     'nav.search': 'Cercar...',
@@ -219,6 +221,7 @@ export const translations: Record<Language, Record<string, string>> = {
   },
   en: {
     'nav.services': 'Services',
+    'nav.home': 'Home',
     'nav.consulting': 'Consulting',
     'nav.contact': 'Contact',
     'nav.search': 'Search...',
