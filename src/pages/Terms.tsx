@@ -71,7 +71,12 @@ const Terms = () => (
           <p>IAcloWd se reserva el derecho de modificar estas Condiciones Generales de Uso en cualquier momento. Las modificaciones serán efectivas desde su publicación en el sitio web.</p>
         </section>
 
-        <p className="text-xs text-muted-foreground/60 pt-4">Última actualización: Febrero 2026</p>
+        <section>
+          <h2 className="text-lg font-semibold text-foreground">9. Normativa aplicable</h2>
+          <p>Las presentes condiciones cumplen con la normativa española y europea vigente, en particular con la Ley 34/2002 (LSSI-CE), el Real Decreto Legislativo 1/2007 (Ley General para la Defensa de los Consumidores y Usuarios), el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).</p>
+        </section>
+
+        <p className="text-xs text-muted-foreground/60 pt-4">Última actualización: Abril 2026</p>
       </div>
     </div>
   </div>
