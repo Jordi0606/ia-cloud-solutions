@@ -1,0 +1,3 @@
+insert into storage.buckets (id, name, public) values ('blog-covers','blog-covers', true) on conflict (id) do nothing;
+create policy "Public read blog covers" on storage.objects for select using (bucket_id = 'blog-covers');
+create policy "Admins manage blog covers" on storage.objects for all to authenticated using (bucket_id = 'blog-covers' and public.has_role(auth.uid(),'admin'::public.app_role)) with check (bucket_id = 'blog-covers' and public.has_role(auth.uid(),'admin'::public.app_role));
