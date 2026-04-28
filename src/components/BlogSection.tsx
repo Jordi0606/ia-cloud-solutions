@@ -99,7 +99,7 @@ const BlogSection = () => {
                               alt={title}
                               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/10" />
                             <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-card/80 px-3 py-1 backdrop-blur-sm">
                               <Calendar className="h-3 w-3 text-primary" />
                               <span className="text-xs text-muted-foreground">
@@ -107,15 +107,24 @@ const BlogSection = () => {
                               </span>
                             </div>
                             <div className="absolute inset-x-0 bottom-0 p-5 md:p-8">
-                              <h3 className="mb-2 font-display text-xl font-semibold leading-tight text-foreground transition group-hover:text-primary md:text-2xl lg:text-3xl">
+                              <h3
+                                className="mb-2 font-display text-xl font-bold leading-tight text-white transition group-hover:text-primary md:text-2xl lg:text-3xl"
+                                style={{ textShadow: '0 2px 12px rgba(0,0,0,0.95), 0 1px 3px rgba(0,0,0,0.9)' }}
+                              >
                                 {title}
                               </h3>
                               {excerpt && (
-                                <p className="hidden max-w-3xl text-sm leading-relaxed text-muted-foreground line-clamp-2 md:block">
+                                <p
+                                  className="hidden max-w-3xl text-sm leading-relaxed text-white/90 line-clamp-2 md:block"
+                                  style={{ textShadow: '0 1px 6px rgba(0,0,0,0.9)' }}
+                                >
                                   {excerpt}
                                 </p>
                               )}
-                              <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary transition-all group-hover:gap-2.5">
+                              <span
+                                className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary transition-all group-hover:gap-2.5"
+                                style={{ textShadow: '0 1px 6px rgba(0,0,0,0.95)' }}
+                              >
                                 {t('blog.section.readMore')}
                                 <ArrowRight className="h-3.5 w-3.5" />
                               </span>
