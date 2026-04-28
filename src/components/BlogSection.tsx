@@ -67,7 +67,7 @@ const BlogSection = () => {
         </div>
 
         {total > 0 ? (
-          <div className="relative mx-auto max-w-3xl">
+          <div className="relative mx-auto max-w-6xl">
             {total > 1 && (
               <button
                 type="button"
@@ -92,34 +92,34 @@ const BlogSection = () => {
                   return (
                     <div key={p.id} className="w-full shrink-0 px-1">
                       <Link to={`/blog/${p.slug}`}>
-                        <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 sm:flex-row">
-                          <div className="relative h-48 overflow-hidden sm:h-auto sm:w-1/2">
+                        <article className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10">
+                          <div className="relative aspect-[16/9] w-full overflow-hidden">
                             <img
                               src={p.cover_image_url || placeholders[i % placeholders.length]}
                               alt={title}
                               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent sm:bg-gradient-to-r" />
-                            <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-card/80 px-3 py-1 backdrop-blur-sm">
+                            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
+                            <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-card/80 px-3 py-1 backdrop-blur-sm">
                               <Calendar className="h-3 w-3 text-primary" />
                               <span className="text-xs text-muted-foreground">
                                 {new Date(p.created_at).toLocaleDateString()}
                               </span>
                             </div>
-                          </div>
-                          <div className="flex flex-1 flex-col justify-center p-5 sm:w-1/2 sm:p-6">
-                            <h3 className="mb-3 font-display text-lg font-semibold leading-tight text-foreground transition group-hover:text-primary md:text-xl">
-                              {title}
-                            </h3>
-                            {excerpt && (
-                              <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3">
-                                {excerpt}
-                              </p>
-                            )}
-                            <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary transition-all group-hover:gap-2.5">
-                              {t('blog.section.readMore')}
-                              <ArrowRight className="h-3.5 w-3.5" />
-                            </span>
+                            <div className="absolute inset-x-0 bottom-0 p-5 md:p-8">
+                              <h3 className="mb-2 font-display text-xl font-semibold leading-tight text-foreground transition group-hover:text-primary md:text-2xl lg:text-3xl">
+                                {title}
+                              </h3>
+                              {excerpt && (
+                                <p className="hidden max-w-3xl text-sm leading-relaxed text-muted-foreground line-clamp-2 md:block">
+                                  {excerpt}
+                                </p>
+                              )}
+                              <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary transition-all group-hover:gap-2.5">
+                                {t('blog.section.readMore')}
+                                <ArrowRight className="h-3.5 w-3.5" />
+                              </span>
+                            </div>
                           </div>
                         </article>
                       </Link>
