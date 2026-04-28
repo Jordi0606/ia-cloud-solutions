@@ -14,7 +14,7 @@ const Footer = () => {
             <Link to="/cookies" className="transition hover:text-primary">{t('footer.cookies')}</Link>
             <Link to="/condiciones" className="transition hover:text-primary">{t('footer.terms')}</Link>
           </div>
-          <p className="text-[10px] leading-relaxed text-muted-foreground md:max-w-2xl md:text-right">{t('footer.rights')}</p>
+          <p className="text-xs text-muted-foreground">{t('footer.rights')}</p>
         </div>
       </div>
     </footer>

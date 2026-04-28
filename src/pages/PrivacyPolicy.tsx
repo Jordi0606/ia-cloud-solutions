@@ -79,7 +79,22 @@ const PrivacyPolicy = () => (
           <p>IAcloWd ha adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado, conforme al estado de la tecnología y la naturaleza de los datos almacenados.</p>
         </section>
 
-        <p className="text-xs text-muted-foreground/60 pt-4">Última actualización: Febrero 2026</p>
+        <section>
+          <h2 className="text-lg font-semibold text-foreground">9. Normativa aplicable</h2>
+          <p>El tratamiento de datos personales se realiza conforme a:</p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>Reglamento (UE) 2016/679 (RGPD).</li>
+            <li>Ley Orgánica 3/2018, de 5 de diciembre (LOPDGDD).</li>
+            <li>Ley 34/2002 (LSSI-CE).</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-foreground">10. Transferencias internacionales</h2>
+          <p>En caso de que algún encargado de tratamiento esté ubicado fuera del Espacio Económico Europeo, IAcloWd garantizará que existan las salvaguardas adecuadas previstas en los artículos 44 a 49 del RGPD (cláusulas contractuales tipo aprobadas por la Comisión Europea o decisiones de adecuación).</p>
+        </section>
+
+        <p className="text-xs text-muted-foreground/60 pt-4">Última actualización: Abril 2026</p>
       </div>
     </div>
   </div>
