@@ -1,0 +1,1 @@
+UPDATE public.blog_posts SET cover_image_url = 'https://ansqitaonbwflxynfcos.supabase.co/storage/v1/object/public/blog-covers/claude-anthropic-2026.jpg' WHERE slug = 'claude-anthropic-impacto-ia-2026';
