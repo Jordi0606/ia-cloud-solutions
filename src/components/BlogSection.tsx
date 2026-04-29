@@ -67,7 +67,7 @@ const BlogSection = () => {
         </div>
 
         {total > 0 ? (
-          <div className="relative mx-auto max-w-6xl">
+          <div className="relative mx-auto max-w-4xl">
             {total > 1 && (
               <button
                 type="button"
@@ -93,7 +93,7 @@ const BlogSection = () => {
                     <div key={p.id} className="w-full shrink-0 px-1">
                       <Link to={`/blog/${p.slug}`}>
                         <article className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10">
-                          <div className="relative aspect-[16/9] w-full overflow-hidden">
+                          <div className="relative aspect-[21/9] w-full overflow-hidden">
                             <img
                               src={p.cover_image_url || placeholders[i % placeholders.length]}
                               alt={title}
