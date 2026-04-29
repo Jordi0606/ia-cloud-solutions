@@ -6,7 +6,7 @@ const socials = [
   {
     key: 'instagram',
     renderIcon: (cls: string) => <img src={logoInstagram} alt="Instagram" className={`${cls} rounded-lg`} />,
-    href: 'https://www.instagram.com/',
+    href: 'https://www.instagram.com/iaclowd?igsh=ZmQ1engxa2E3Z2Fu',
   },
   {
     key: 'telegram',
