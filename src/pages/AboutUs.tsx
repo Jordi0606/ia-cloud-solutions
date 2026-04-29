@@ -51,7 +51,7 @@ const AboutUs = () => {
         {/* Equipo */}
         <section id="about-team" className="container mx-auto px-4 py-12">
           <div className="flex flex-col items-center gap-8 md:flex-row">
-            <div className="relative w-full max-w-md">
+            <div className="relative w-full max-w-sm">
               <img
                 src={jordiCeo}
                 alt={`${t('about.team.ceo.name')} - ${t('about.team.ceo.role')}`}
