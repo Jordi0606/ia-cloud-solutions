@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { MessageCircle, X, Send, Loader2, Mic, MicOff } from 'lucide-react';
+import { X, Send, Loader2, Mic, MicOff, Bot, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import ReactMarkdown from 'react-markdown';
@@ -166,14 +166,46 @@ const AiChatWidget = () => {
 
   return (
     <>
-      {/* Floating button */}
+      {/* Floating cloud-shaped button */}
       <button
         onClick={() => setOpen(!open)}
         aria-label={t('chat.label')}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-primary/80 px-5 py-3 text-primary-foreground shadow-[0_0_24px_hsl(var(--primary)/0.6)] ring-2 ring-primary/40 transition-transform hover:scale-105 animate-pulse"
+        className="group fixed bottom-6 right-6 z-50 transition-transform hover:scale-110 focus:outline-none"
       >
-        {open ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
-        <span className="font-display text-sm font-semibold tracking-wide">{t('chat.label')}</span>
+        <div className="relative">
+          {/* Cloud SVG shape */}
+          <svg
+            viewBox="0 0 120 80"
+            className="h-20 w-28 drop-shadow-[0_0_18px_hsl(var(--primary)/0.65)] animate-pulse"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="hsl(var(--primary))" />
+                <stop offset="100%" stopColor="hsl(var(--primary) / 0.7)" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M30 65 Q10 65 12 48 Q12 34 28 33 Q32 18 50 20 Q60 8 76 16 Q92 12 96 30 Q112 32 110 50 Q110 65 92 65 Z"
+              fill="url(#cloudGrad)"
+              stroke="hsl(var(--primary-foreground) / 0.3)"
+              strokeWidth="1.5"
+            />
+          </svg>
+          {/* Icon + label centered over cloud */}
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-primary-foreground">
+            {open ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <>
+                <Bot className="h-5 w-5" strokeWidth={2.4} />
+                <span className="font-display text-[11px] font-bold uppercase tracking-wider leading-none mt-0.5">
+                  {t('chat.label')}
+                </span>
+              </>
+            )}
+          </div>
+        </div>
       </button>
 
       {/* Chat panel */}
