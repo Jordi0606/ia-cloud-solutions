@@ -5,8 +5,8 @@ const Footer = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-border bg-secondary/20 py-8 pb-24 md:pb-8">
-      <div className="container mx-auto px-4 md:pr-32">
+    <footer className="border-t border-border bg-secondary/20 py-8 pb-32 md:pb-12">
+      <div className="container mx-auto px-4 md:pr-40">
         <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
           <div className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground md:gap-6">
             <Link to="/aviso-legal" className="transition hover:text-primary">{t('footer.legal')}</Link>
