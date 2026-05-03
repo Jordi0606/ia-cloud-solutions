@@ -30,7 +30,7 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 const langToSpeech: Record<string, string> = { es: 'es-ES', ca: 'ca-ES', en: 'en-US' };
 
 const AiChatWidget = () => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState('');
@@ -169,9 +169,11 @@ const AiChatWidget = () => {
       {/* Floating button */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-105"
+        aria-label={t('chat.label')}
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-primary/80 px-5 py-3 text-primary-foreground shadow-[0_0_24px_hsl(var(--primary)/0.6)] ring-2 ring-primary/40 transition-transform hover:scale-105 animate-pulse"
       >
-        {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
+        {open ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
+        <span className="font-display text-sm font-semibold tracking-wide">{t('chat.label')}</span>
       </button>
 
       {/* Chat panel */}
