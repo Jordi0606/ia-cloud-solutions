@@ -188,17 +188,9 @@ const AiChatWidget = () => {
             className="relative h-20 w-28 drop-shadow-[0_0_18px_hsl(var(--primary)/0.65)]"
             aria-hidden="true"
           >
-            <defs>
-              <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="hsl(var(--primary))" />
-                <stop offset="100%" stopColor="hsl(var(--primary))" />
-              </linearGradient>
-            </defs>
             <path
               d="M30 65 Q10 65 12 48 Q12 34 28 33 Q32 18 50 20 Q60 8 76 16 Q92 12 96 30 Q112 32 110 50 Q110 65 92 65 Z"
-              fill="url(#cloudGrad)"
-              stroke="hsl(var(--primary-foreground) / 0.3)"
-              strokeWidth="1.5"
+              fill="hsl(var(--primary))"
             />
           </svg>
           {/* Icon + label centered over cloud */}
