@@ -191,6 +191,9 @@ const AiChatWidget = () => {
             <path
               d="M30 65 Q10 65 12 48 Q12 34 28 33 Q32 18 50 20 Q60 8 76 16 Q92 12 96 30 Q112 32 110 50 Q110 65 92 65 Z"
               fill="hsl(217, 91%, 60%)"
+              stroke="white"
+              strokeWidth="2.5"
+              strokeLinejoin="round"
             />
           </svg>
           {/* Icon + label centered over cloud */}
