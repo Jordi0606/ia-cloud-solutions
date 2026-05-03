@@ -173,10 +173,16 @@ const AiChatWidget = () => {
         className="group fixed bottom-6 right-6 z-50 transition-transform hover:scale-110 focus:outline-none"
       >
         <div className="relative">
+          {/* Neon green halo behind cloud */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10 rounded-full blur-2xl animate-green-halo"
+            style={{ background: "radial-gradient(circle, #39ff14 0%, rgba(57,255,20,0.6) 40%, transparent 70%)" }}
+          />
           {/* Cloud SVG shape */}
           <svg
             viewBox="0 0 120 80"
-            className="h-20 w-28 drop-shadow-[0_0_18px_hsl(var(--primary)/0.65)] animate-pulse"
+            className="relative h-20 w-28 drop-shadow-[0_0_18px_hsl(var(--primary)/0.65)] animate-cloud-dim"
             aria-hidden="true"
           >
             <defs>
