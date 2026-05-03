@@ -91,6 +91,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'social.instagram': 'Instagram',
     'social.telegram': 'Telegram',
     'footer.rights': '© 2026 IAcloWd. Todos los derechos reservados.',
+    'chat.label': 'Chat',
     // Blog section
     'blog.section.title': 'Blog & Noticias',
     'blog.section.viewAll': 'Ver todos',
@@ -197,6 +198,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'social.instagram': 'Instagram',
     'social.telegram': 'Telegram',
     'footer.rights': '© 2026 IAcloWd. Tots els drets reservats.',
+    'chat.label': 'Xat',
     'blog.section.title': 'Blog & Notícies',
     'blog.section.viewAll': 'Veure tots',
     'blog.section.readMore': 'Llegir més',
@@ -301,6 +303,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'social.instagram': 'Instagram',
     'social.telegram': 'Telegram',
     'footer.rights': '© 2026 IAcloWd. All rights reserved.',
+    'chat.label': 'Chat',
     'blog.section.title': 'Blog & News',
     'blog.section.viewAll': 'View all',
     'blog.section.readMore': 'Read more',
